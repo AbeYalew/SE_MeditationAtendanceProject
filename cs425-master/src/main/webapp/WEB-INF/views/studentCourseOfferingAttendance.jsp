@@ -25,7 +25,7 @@
 				<td>${block.endDate}</td>
 				<td>
 
-					<form action="/my/courselist" method="GET">
+					<form action="/student/Courselist" method="GET">
 
 						<button type="submit" class="btn btn-primary">Back To
 							List</button>
@@ -40,7 +40,7 @@
 
 
 		<div class="panel panel-primary">
-			<div class="panel-heading">My Attendance</div>
+			<div class="panel-heading">My Attendance s</div>
 			<div class="panel-body panel-clear ">
 				<table class="table table-bordered">
 					<thead>
@@ -62,9 +62,13 @@
 						<td>${studentA.student.firstName}</td> --%>
 
 
-							<c:forEach items="${studentA.attendance}" var="sttAtendance">
-
-								<td><c:if test="${sttAtendance==true}">
+							<c:forEach items="${studentA.attendance}" var="sttAtendance" varStatus="iter">
+								
+								<td data-date="${block.sessions[iter.count - 1].date}" 
+									class="attendance" 
+									data-student="${studentA.student.studentId}"
+									
+									><c:if test="${sttAtendance==true}">
 										<span style="color: green" class="glyphicon glyphicon-ok"></span>
 										<%-- <c:set var="present" value="${present + 1}" scope="page"/> --%>
 									</c:if> <c:if test="${sttAtendance==false}">

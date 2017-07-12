@@ -46,7 +46,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/my/courselist">My CourseList</a></li>
+                    <li><a href="/student/Courselist">My CourseList</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">My Profile</a></li>
                 </ul>

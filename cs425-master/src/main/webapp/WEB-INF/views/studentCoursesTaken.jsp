@@ -37,19 +37,11 @@
 							<td>${enrolledCourse.offering.startDate}</td>
 							<td>
 								<form
-									action="../courseOffering/student/${enrolledCourse.offering.id}"
+									action="/attendance/student/${enrolledCourse.offering.id}"
 									method="GET">
 									<button type="submit" class="btn btn-primary">view my attendace </button>
 								</form>
 							</td>
-							<%--
-            <form action="../course/delete/${course.courseId}" method="GET">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-
-
-        </td> --%>
-
 						</tr>
 
 					</c:forEach>

@@ -2,6 +2,7 @@ package edu.mum.cs.projects.attendance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.mum.cs.projects.attendance.domain.entity.Student;
+import edu.mum.cs.projects.attendance.service.EnrollmentService;
 import edu.mum.cs.projects.attendance.service.StudentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,9 @@ import java.util.List;
 public class StudentController {
     @Autowired
     StudentService studentService;
+    
+    @Autowired
+    EnrollmentService enrollmentService;
 
     @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.GET)
     public String editStudentForm(@PathVariable String id,  Model model) {
@@ -63,5 +68,13 @@ public class StudentController {
         List<Student> students=studentService.getAllStudents();
         model.addAttribute("students",students);
         return "studentsList";
+    }
+    
+    @RequestMapping(value = "/student/Courselist")
+    public String getStudentCourseList(String studentid, Model model,Authentication authentication) { 	
+    	
+		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(authentication.getName()));	
+
+		return "studentCoursesTaken";
     }
 }

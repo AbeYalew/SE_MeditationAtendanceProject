@@ -93,6 +93,16 @@
   transform:rotate(290deg);
 }
 .verticaltext {
+   transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+
+    bottom: 45%;
+    position: absolute;
+    color: #ed217c;
+ 
+}
+.vertical-text {
    /*  transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg); */

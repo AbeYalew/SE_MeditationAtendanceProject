@@ -73,15 +73,16 @@ public class CourseController {
 					.retrieveStudentAttendanceRecords(coffering);
 		
 		if(studentAttendance == null){
-			return "redirect:/my/courselist?attendance=none";			
+			return "redirect:/student/Courselist?attendance=none";			
 		}
+		
 		
 		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student)).collect(Collectors.toList());
 		
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
 
-		return "attendanceListStudent";
+		return "studentCourseOfferingAttendance";
 	}
 
 	@RequestMapping(value = "/getallblocks", method = RequestMethod.GET)
