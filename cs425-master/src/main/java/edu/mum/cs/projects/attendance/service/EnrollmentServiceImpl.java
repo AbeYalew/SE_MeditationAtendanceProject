@@ -7,6 +7,7 @@ import edu.mum.cs.projects.attendance.domain.entity.Enrollment;
 import edu.mum.cs.projects.attendance.domain.entity.Student;
 import edu.mum.cs.projects.attendance.repository.EnrollmentRepository;
 import edu.mum.cs.projects.attendance.repository.StudentRepository;
+import edu.mum.cs.projects.attendance.util.IDNumberUtil;
 
 @Service
 public class EnrollmentServiceImpl implements EnrollmentService {
@@ -18,7 +19,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
 	@Override
 	public Iterable<Enrollment> getEnrolledCoursesByStudentId(String id) {
-		Student student = studentRepository.findBystudentId(id);
+		String studentId = IDNumberUtil.convertToStudentId(id);
+		Student student = studentRepository.findBystudentId(studentId);
 		return enrollmentRepository.findByStudent(student);
 	}
 

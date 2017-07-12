@@ -1,19 +1,13 @@
 package edu.mum.cs.projects.attendance.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
-import edu.mum.cs.projects.attendance.domain.entity.Student;
-import edu.mum.cs.projects.attendance.repository.EnrollmentRepository;
-import edu.mum.cs.projects.attendance.repository.StudentRepository;
-import edu.mum.cs.projects.attendance.service.CourseService;
 import edu.mum.cs.projects.attendance.service.EnrollmentService;
 import edu.mum.cs.projects.attendance.service.StudentService;
 
@@ -27,9 +21,10 @@ public class StudentAttendanceController {
     EnrollmentService enrollmentService;
 
     @RequestMapping(value = "/my/courselist")
-    public String getStudentCourseList(String studentid, Model model) { 	
+    public String getStudentCourseList(String studentid, Model model,Authentication authentication) { 
     	
-		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(StudentService.sampleStudentId));	
+    	
+		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(authentication.getName()));	
 
 		return "studentCourseList";
     }

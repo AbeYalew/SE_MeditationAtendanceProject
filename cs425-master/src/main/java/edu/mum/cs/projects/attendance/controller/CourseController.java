@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import edu.mum.cs.projects.attendance.service.AttendanceService;
 import edu.mum.cs.projects.attendance.service.CourseService;
 import edu.mum.cs.projects.attendance.service.StudentService;
 import edu.mum.cs.projects.attendance.util.DateUtil;
+import edu.mum.cs.projects.attendance.util.IDNumberUtil;
 
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -56,14 +58,16 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/courseOffering/student/{cofferingid}", method = RequestMethod.GET)
-	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model) {
+	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model,Authentication authentication) {
 
 		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
 
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
+		
+		String studentId = IDNumberUtil.convertToStudentId(Long.valueOf(authentication.getName()));
 
-		Student student = studentService.getStudentsById(StudentService.sampleStudentId);
+		Student student = studentService.getStudentsById(studentId);
 
 		List<StudentAttendance> studentAttendance = attendanceService
 					.retrieveStudentAttendanceRecords(coffering);
