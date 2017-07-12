@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 
-		<table class="table table-hover ">
+		<table class="table ">
 			<thead>
 				<tr>
 					<th>Offering ID</th>
@@ -42,7 +42,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">My Attendance</div>
 			<div class="panel-body panel-clear ">
-				<table class="table table-hover table-striped table-bordered">
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<!-- <th>Student ID</th>
