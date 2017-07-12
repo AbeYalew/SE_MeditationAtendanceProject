@@ -36,9 +36,6 @@
             <a class="navbar-brand" href="#">Fire-TimeSheet</a>
         </div>
 
-
-
-
         <ul class="nav navbar-nav">
             <sec:authorize access="hasRole('ROLE_STUDENT')">
             <li class="dropdown">
@@ -85,7 +82,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <form action="/login" class="navbar-form navbar-right">
                 <sec:authorize access="isAuthenticated()">
-                    <button class="btn btn-primary">Welcome ${principal.username} </button>
+                   <a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-user"> ${userName} </span></a>
                 </sec:authorize>
 
                 <button type="submit" class="btn btn-success">Sign Out</button>
