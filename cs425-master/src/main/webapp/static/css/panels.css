@@ -1,0 +1,13 @@
+.panel-body{
+	padding: 0px;
+}
+
+.panel-body > div{
+	padding:0px;
+}
+.panel-body > div >table{
+	margin-bottom:0px;
+}
+.panel-body table{
+	margin-bottom:0px;
+}
