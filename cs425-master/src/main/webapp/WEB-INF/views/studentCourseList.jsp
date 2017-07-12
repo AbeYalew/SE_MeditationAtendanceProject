@@ -6,10 +6,18 @@
 		<div class="panel-body">
 
 			<div class="col-sm-12">
-				<form action="../course/add" method="GET">
-					<button type="submit" class="btn btn-success">Add New
-						Course</button>
-				</form>
+				
+				<c:if test="${param.attendance =='none'}">
+					<div class="alert alert-warning alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						Sorry no attendance records for the selected course
+					</div>
+				</c:if>
+
+
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -20,16 +28,17 @@
 						</tr>
 
 					</thead>
-					<c:forEach items="${courseOfferings}" var="courseOffering">
+					<c:forEach items="${enrolledCourses}" var="enrolledCourse">
 						<tr>
-							<td>${courseOffering.course.name}</td>
-							<td>${courseOffering.period}</td>
-							<td>${courseOffering.startDate}</td>
+							<td>${enrolledCourse.offering.course}/
+								${enrolledCourse.offering.course.name }</td>
+							<td>${enrolledCourse.offering.period}</td>
+							<td>${enrolledCourse.offering.startDate}</td>
 							<td>
-								<form action="../courseOffering/getrecord/${courseOffering.id}"
+								<form
+									action="../courseOffering/student/${enrolledCourse.offering.id}"
 									method="GET">
-									<button type="submit" class="btn btn-primary">get
-										attendace record</button>
+									<button type="submit" class="btn btn-primary">view my attendace </button>
 								</form>
 							</td>
 							<%--

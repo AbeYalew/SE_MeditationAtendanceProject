@@ -17,7 +17,7 @@ import edu.mum.cs.projects.attendance.domain.entity.Student;
 public interface StudentService {
 	
 	static final StudentService INSTANCE = new StudentServiceImpl();
-	
+	String sampleStudentId ="000-98-0201";
 	List<Student> getStudentsByEntry(String entryDate);
 	Student getStudentsById(String id);
 	public List<Student> getAllStudents() ;

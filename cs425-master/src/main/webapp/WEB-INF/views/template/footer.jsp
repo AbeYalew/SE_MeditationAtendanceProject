@@ -1,8 +1,9 @@
 
+
 <hr>
 
 <footer>
-    <p>&copy; 2017 TeamFire, Inc.</p>
+    <p align="center">&copy; 2017 TeamFire, Inc.</p>
 </footer>
 </div> <!-- /container -->
 

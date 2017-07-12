@@ -93,11 +93,14 @@
   transform:rotate(290deg);
 }
 .verticaltext {
-    transform: rotate(-90deg);
+   /*  transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-
-    bottom: 45%;
-    position: absolute;
+    -webkit-transform: rotate(-90deg); */
+ 
+     bottom: 45%; 
+    position: relative;
+ 	font-size:12px;
+ 	white-space:nowrap;
     color: #ed217c;
+ 
 }
