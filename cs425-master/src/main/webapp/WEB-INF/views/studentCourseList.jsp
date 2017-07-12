@@ -3,9 +3,10 @@
 <div class="container">
 	<div class="panel panel-primary">
 		<div class="panel-heading">Course List</div>
-		<div class="panel-body">
+		<div class="panel-body panel-clear">
 
 			<div class="col-sm-12">
+				
 				
 				<c:if test="${param.attendance =='none'}">
 					<div class="alert alert-warning alert-dismissible" role="alert">

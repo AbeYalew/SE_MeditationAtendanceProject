@@ -41,7 +41,7 @@
 
 		<div class="panel panel-primary">
 			<div class="panel-heading">My Attendance</div>
-			<div class="panel-body">
+			<div class="panel-body panel-clear ">
 				<table class="table table-hover table-striped table-bordered">
 					<thead>
 						<tr>
