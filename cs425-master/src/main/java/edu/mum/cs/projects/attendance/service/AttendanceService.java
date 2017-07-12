@@ -32,5 +32,6 @@ public interface AttendanceService {
 	void createAttendanceReportForEntries(String startDate);
 
 	void countAttendancePerDay();
+	public void creatUsers();
 	
 }

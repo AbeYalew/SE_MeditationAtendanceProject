@@ -22,7 +22,7 @@ public class loginController {
         {
             errorMessage = "Invalid login credentials";
         }
-
+        
         model.addAttribute("error", errorMessage);
         return "login";
 

@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -23,9 +25,12 @@ import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
 import edu.mum.cs.projects.attendance.domain.entity.BarcodeRecord;
 import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
 import edu.mum.cs.projects.attendance.domain.entity.Enrollment;
+import edu.mum.cs.projects.attendance.domain.entity.Faculty;
+import edu.mum.cs.projects.attendance.domain.entity.Role;
 import edu.mum.cs.projects.attendance.domain.entity.Session;
 import edu.mum.cs.projects.attendance.domain.entity.Student;
 import edu.mum.cs.projects.attendance.domain.entity.Timeslot;
+import edu.mum.cs.projects.attendance.domain.entity.Users;
 import edu.mum.cs.projects.attendance.ooxml.SpreadsheetWriterDAO;
 import edu.mum.cs.projects.attendance.repository.BarcodeRecordRepository;
 import edu.mum.cs.projects.attendance.util.DateUtil;
@@ -55,19 +60,26 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Autowired
 	private StudentService studentService;
-	
+
 	@Autowired
 	BarcodeRecordRepository barcodeRecordRepository;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private FacultyService facultyService;
 
 	@Override
 	public void countAttendancePerDay() {
 		List<BarcodeRecord> records = new LinkedList<>();
 		barcodeRecordRepository.findAll().forEach(br -> records.add(br));
-		
-		Map<LocalDate, Long> dateMap = records.stream().filter(r -> r.getTimeslot().getId().equals("AM")).map(r -> r.getDate())
-				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-		
-		dateMap.entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).forEach(e -> System.out.println(e.getKey().toString() + "," + e.getValue()));
+
+		Map<LocalDate, Long> dateMap = records.stream().filter(r -> r.getTimeslot().getId().equals("AM"))
+				.map(r -> r.getDate()).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+		dateMap.entrySet().stream().sorted(Comparator.comparing(Entry::getKey))
+				.forEach(e -> System.out.println(e.getKey().toString() + "," + e.getValue()));
 	}
 
 	@Override
@@ -161,7 +173,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 			List<Session> sessions) {
 		return sa -> {
 			List<Boolean> attendance = new ArrayList<Boolean>(sessions.size());
-			
+
 			sa.setAttendance(attendance);
 
 			boolean noBarcode = (null == sa.getStudent().getBarcode());
@@ -170,11 +182,10 @@ public class AttendanceServiceImpl implements AttendanceService {
 				if (noBarcode) {
 					attendance.add(false);
 				} else {
-					attendance.add(
-							barcodeRecords.stream().filter(br -> br.getBarcode().equals(sa.getStudent().getBarcode()))
-									.filter(br -> br.getDate().equals(session.getDate()))
-									.filter(br -> br.getTimeslot().equals(session.getTimeslot()))
-									.findFirst().isPresent());
+					attendance.add(barcodeRecords.stream()
+							.filter(br -> br.getBarcode().equals(sa.getStudent().getBarcode()))
+							.filter(br -> br.getDate().equals(session.getDate()))
+							.filter(br -> br.getTimeslot().equals(session.getTimeslot())).findFirst().isPresent());
 				}
 			}
 
@@ -195,7 +206,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		for (CourseOffering offering : courseService.getCourseOfferings(blockStartDate)) {
 			errorRecords.addAll(createAttendanceReportForOffering(offering));
 		}
-		
+
 		return errorRecords;
 	}
 
@@ -203,13 +214,55 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public void emailReportToStudentsForBlock(String blockStartDate) {
 		for (CourseOffering offering : courseService.getCourseOfferings(blockStartDate)) {
 			emailReportToStudentsForOffering(offering);
-		}		
+		}
 	}
 
 	@Override
 	public void emailReportToStudentsForOffering(CourseOffering courseOffering) {
 		List<StudentAttendance> studentAttendanceList = retrieveStudentAttendanceRecords(courseOffering);
-		emailService.emailAttendanceReportToStudents(studentAttendanceList);		
+		emailService.emailAttendanceReportToStudents(studentAttendanceList);
 	}
 
+	@Transactional
+	public void creatUsers() {
+		//Set<Role> roles = new HashSet<>();
+		System.out.println("User Account for Students is created.....");
+		for (Student student : studentService.getStudentsByEntry("2017-02-09 00:00:00")) {
+
+			Role role = new Role();
+			role.setRole("STUDENT");
+			
+			Users user = new Users();
+			String temp = student.getStudentId();
+			String userName = "";
+			String[] str = temp.split("-");
+			for (String st : str) {
+				userName += st;
+			}
+			user.setEmail(student.getFirstName() + student.getLastName().substring(0, 1) + "@mum.edu");
+			user.setStudentId(student.getStudentId());
+			user.setName(userName.substring(3));
+			user.setPassword(student.getLastName() + "123");
+			user.setActive(1);
+
+			user.setRoles(role);
+			userService.createUser(user);
+		}
+		System.out.println("User Account for Faculty is created.....");
+		for (Faculty faculty : facultyService.getAll()) {
+			Role role = new Role();
+			role.setRole("FACULTY");
+			
+			Users user = new Users();
+
+			user.setName(faculty.getLastName() + faculty.getId());
+			user.setFacultyId(faculty.getId());
+			user.setEmail(faculty.getLastName() + "@mum.edu");
+			user.setActive(0);
+			user.setPassword(faculty.getLastName() + "123");
+			user.setRoles(role);
+			userService.createUser(user);
+		}
+		System.out.println("All user Account are created.....");
+	}
 }
