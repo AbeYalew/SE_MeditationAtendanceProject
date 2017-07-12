@@ -1,14 +1,7 @@
 package edu.mum.cs.projects.attendance;
 
-import org.hibernate.HibernateException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
-
-
-import edu.mum.cs.projects.attendance.controller.HomeController;
-import edu.mum.cs.projects.attendance.service.AttendanceService;
 
 /**
  * <h1>Maharishi University of Management<br/>Computer Science Department</h1>

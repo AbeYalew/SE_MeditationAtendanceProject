@@ -13,7 +13,7 @@ import edu.mum.cs.projects.attendance.service.UserService;
 public class CreateUsers {
      
 	public static void main(String[] args) {
-		SpringApplication.run(CreateUsers.class, args);
+		
 		ConfigurableApplicationContext context = SpringApplication.run(CreateUsers.class, args);
 		
 		UserService service = context.getBean(UserService.class);
