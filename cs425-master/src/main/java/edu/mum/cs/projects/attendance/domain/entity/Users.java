@@ -12,10 +12,14 @@ public class Users {
     @Column(name = "user_id")
     private int id;
     @Column(name = "email")
+    
+    
     private String email;
     @Column(name = "password")
     private String password;
-    @Column(name = "name")
+    
+    
+    @Column(name = "name",unique=true)
     private String name;
     @Column(name = "Student_Id")
     private String studentId;    

@@ -18,6 +18,7 @@ public class CreateUsers {
 		
 		UserService service = context.getBean(UserService.class);
 		service.creatUsers();
+		System.exit(0);
 	}
 	
 }

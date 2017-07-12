@@ -20,16 +20,5 @@ public class AttendanceReport {
 	public static void main(String[] args) {
 		SpringApplication.run(AttendanceReport.class, args);
 	}
-	/*public static void main(String[] args) throws HibernateException, Exception {
-		ConfigurableApplicationContext context = SpringApplication.run(AttendanceReport.class, args);
-
-		AttendanceService service = context.getBean(AttendanceService.class);
-//		HomeController cnt = context.getBean(HomeController.class);
-//		
-//		// The String argument is the start date of the block
-		//service.creatUsers();
-//
-//		System.out.println("\nAttendance Report App finished executing!");		
-//	}
-	}	*/
+	
 }

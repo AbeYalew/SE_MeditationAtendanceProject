@@ -2,6 +2,8 @@ package edu.mum.cs.projects.attendance.controller;
 
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,7 @@ public class WelcomeController {
 	private FacultyService facultyService;
 	
     @RequestMapping("/welcome")
-    public String dashboard(Model model){
+    public String dashboard(Model model,HttpSession session){
     	
     	Users user = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	String has_Role = user.getRoles().getRole();    	
@@ -44,7 +46,8 @@ public class WelcomeController {
     	else{
     		userName = "Admin";
     	}
-		model.addAttribute("userName", userName);
+    	
+    	session.setAttribute("userName", userName);
 		
         return "welcome";
     }

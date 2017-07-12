@@ -1,6 +1,7 @@
 package edu.mum.cs.projects.attendance.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -45,8 +46,16 @@ public class UserService {
 	public void creatUsers() {
 		//Set<Role> roles = new HashSet<>();
 		System.out.println("User Account for Students is created.....");
+		
+		List<Users> usersList = usersRepository.findAll();
+		
+		if(usersList.size() > 0){
+			return ;
+		}
+		
 		for (Student student : studentService.getStudentsByEntry("2017-02-09 00:00:00")) {
 
+			
 			Role role = new Role();
 			role.setRole("STUDENT");
 			
@@ -54,11 +63,15 @@ public class UserService {
 			String temp = student.getStudentId();
 			String userName = "";
 			String[] str = temp.split("-");
+			
 			for (String st : str) {
 				userName += st;
 			}
+			
 			user.setEmail(student.getFirstName() + student.getLastName().substring(0, 1) + "@mum.edu");
 			user.setStudentId(student.getStudentId());
+			
+			
 			user.setName(userName.substring(3));
 			user.setPassword(student.getLastName() + "123");
 			user.setActive(1);

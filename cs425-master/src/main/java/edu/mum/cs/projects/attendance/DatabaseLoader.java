@@ -26,6 +26,7 @@ public class DatabaseLoader {
 		DatabaseLoaderService service = context.getBean(DatabaseLoaderService.class);
 		service.loadDatabaseFromSpreadsheet();
 		service.loadScannedBarcodesToDatabase();
+		System.exit(0);
 	}
 
 }

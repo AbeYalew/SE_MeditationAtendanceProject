@@ -77,6 +77,7 @@
                     <li><a href="/getallblocks">Manage Attendance</a></li>
                 </ul>
             </li>
+            
             </sec:authorize>
         </ul>
         <sec:authentication var="principal" property="principal" />
