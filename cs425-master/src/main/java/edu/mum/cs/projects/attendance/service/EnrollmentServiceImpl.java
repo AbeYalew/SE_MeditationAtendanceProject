@@ -24,4 +24,10 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		return enrollmentRepository.findByStudent(student);
 	}
 
+	@Override
+	public Iterable<Enrollment> getCourseOfferingTaught(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
