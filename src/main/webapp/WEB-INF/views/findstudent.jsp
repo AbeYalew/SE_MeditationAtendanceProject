@@ -6,8 +6,13 @@
 		<div class="panel-body">
 
 			<div class="col-sm-12">
+			<form action="../student/get" method="GET">
+					<input type="search" class="form-control" id="id" name="studentId" placeholder="enter studentId to search...">
+					<button type="submit" class="btn btn-success">Search
+						Student By StudentID</button>
+				</form>
 				<form action="../user/get" method="GET">
-					<input type="search" class="form-control" id="id" name="userName" placeholder="enter studentId to search...">
+					<input type="search" class="form-control" id="id" name="userName" placeholder="enter username to search...">
 					<button type="submit" class="btn btn-success">Search
 						User By UserName</button>
 				</form>

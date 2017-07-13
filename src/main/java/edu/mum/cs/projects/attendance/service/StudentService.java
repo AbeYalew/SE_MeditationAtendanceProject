@@ -15,10 +15,13 @@ import edu.mum.cs.projects.attendance.domain.entity.Student;
  * @since 1.0.0
  */
 public interface StudentService {
+	
 	static final StudentService INSTANCE = new StudentServiceImpl();
 	
 	List<Student> getStudentsByEntry(String entryDate);
+	//added fire group
 	Student getStudentsById(String id);
+
 	public List<Student> getAllStudents() ;
 	
 	String getBarcodeId(String studentId);

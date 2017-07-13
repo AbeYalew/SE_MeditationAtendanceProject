@@ -48,12 +48,12 @@ public class StudentServiceImpl implements StudentService {
 		
 		return barcodeMap;
 	}
-
+   
+	//added by fire group
 	@Override
 	public String getBarcodeId(String studentId) {
 		return getBarcodeMap().get(studentId);
 	}
-
 	@Override
 	public List<Student> getStudentsByEntry(String entryDate) {
 		return studentRepository.findByEntryDate(DateUtil.convertStringToDate(entryDate));
