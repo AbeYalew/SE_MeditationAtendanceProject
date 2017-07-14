@@ -62,11 +62,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private StudentService studentService;
 
 	@Autowired
-	BarcodeRecordRepository barcodeRecordRepository;
-
-	
-	@Autowired
-	private FacultyService facultyService;
+	BarcodeRecordRepository barcodeRecordRepository;	
 
 	@Override
 	public void countAttendancePerDay() {

@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
        
       http.authorizeRequests()
       .antMatchers("/welcome").access("hasRole('FACULTY') or hasRole('STAFF') or hasRole('STUDENT') or hasRole('ADMIN')")
-      .and().formLogin().loginPage("/login")
+       .and().csrf().disable().formLogin().loginPage("/login")
        .usernameParameter("username").passwordParameter("password")
        .defaultSuccessUrl("/welcome")
         .and().exceptionHandling().accessDeniedPage("/Access_Denied");

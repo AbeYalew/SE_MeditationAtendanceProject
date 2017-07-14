@@ -84,7 +84,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <form action="/login" class="navbar-form navbar-right">
                 <sec:authorize access="isAuthenticated()">
-                   <a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-user"> ${userName} </span></a>
+                   <a class="navbar-brand" href="../user/get/${username}"> <span class="glyphicon glyphicon-user"> ${lastName} </span></a>
                 </sec:authorize>
 
                 <button type="submit" class="btn btn-success">Sign Out</button>

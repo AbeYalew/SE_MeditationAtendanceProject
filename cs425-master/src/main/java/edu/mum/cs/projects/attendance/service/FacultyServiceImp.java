@@ -26,4 +26,9 @@ public class FacultyServiceImp implements FacultyService {
 		return facultyRepository.findById(id);
 	}
 
+	@Override
+	public void createFaculty(Faculty faculty) {		
+		facultyRepository.save(faculty);
+	}
+
 }

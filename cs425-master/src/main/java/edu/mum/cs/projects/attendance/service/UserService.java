@@ -1,9 +1,7 @@
 package edu.mum.cs.projects.attendance.service;
 
-import java.util.HashSet;
-import java.util.List;
+
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +31,15 @@ public class UserService {
 	
 	public void createUser(Users user){		
 		usersRepository.save(user);
-	}	
+	}
+	public Users getUserByID(int userId){		
+		return usersRepository.findById(userId);
+	}
+	public Users getUserByUserName(String username) throws UsernameNotFoundException {
+		Optional<Users> optionalUsers = usersRepository.findByName(username);
+		    
+		return optionalUsers.map(Users::new).get();
+	}
 	
 	public Users getUser(String username) throws UsernameNotFoundException {
 		Optional<Users> optionalUsers = usersRepository.findByName(username);
@@ -44,16 +50,10 @@ public class UserService {
 	
 	@Transactional
 	public void creatUsers() {
-		//Set<Role> roles = new HashSet<>();
-		System.out.println("User Account for Students is created.....");
 		
-		List<Users> usersList = usersRepository.findAll();
+		System.out.println("User Account for Students is creating.....");		
 		
-		if(usersList.size() > 0){
-			return ;
-		}
-		
-		for (Student student : studentService.getStudentsByEntry("2017-02-09 00:00:00")) {
+		for (Student student : studentService.getAllStudents()){//.getStudentsByEntry("2017-02-09 00:00:00")) {
 
 			
 			Role role = new Role();
@@ -75,15 +75,14 @@ public class UserService {
 			user.setName(userName.substring(3));
 			user.setPassword(student.getLastName() + "123");
 			user.setActive(1);
-
 			user.setRoles(role);
 			userService.createUser(user);
 		}
-		System.out.println("User Account for Faculty is created.....");
+		System.out.println("User Account for Faculty is creating.....");
 		for (Faculty faculty : facultyService.getAll()) {
 			Role role = new Role();
 			role.setRole("FACULTY");
-			
+			System.out.println("User Account for Faculty is creating.....");
 			Users user = new Users();
 
 			user.setName(faculty.getLastName() + faculty.getId());
