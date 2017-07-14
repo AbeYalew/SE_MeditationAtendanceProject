@@ -46,7 +46,7 @@
 					<tr>
 						<td>Details: <a href="../../user/getFaculty/${user.facultyId}/${user.name}/">Details:</a>
 						</td>
-						<td><a href="editFaculty/${user.facultyId}/${user.id}"> edit</a> </td>
+						<td><a href="editFaculty/${user.facultyId}/${user.name}"> edit</a> </td>
 					</tr>
 					</c:if>
 

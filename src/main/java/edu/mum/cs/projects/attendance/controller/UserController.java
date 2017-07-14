@@ -40,7 +40,7 @@ public class UserController {
         return "userProfile";
     }
     
-    @RequestMapping(value = "/get/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/get/{username}", method = RequestMethod.GET)
     public String getUser(Model model, @PathVariable String username) {       
         model.addAttribute("user", userService.getUserByUserName(username));
         return "userProfile";
