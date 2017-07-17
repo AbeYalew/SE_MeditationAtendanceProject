@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: attendance-check
 Implementation-Version: 2.0.0-SNAPSHOT
-Built-By: yalew
+Built-By: destalem
 Implementation-Vendor-Id: edu.mum.cs.projects
-Build-Jdk: 1.8.0_131
+Build-Jdk: 1.8.0_121
 Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.

@@ -27,10 +27,7 @@ public class CustomUserDetails extends Users implements UserDetails {
 		return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
 				.collect(Collectors.toList());
 	}
-	/*@Override
-	public Role getRoles() {
-		return super.getRoles();
-	}*/
+	
 
 	@Override
 	public String getPassword() {

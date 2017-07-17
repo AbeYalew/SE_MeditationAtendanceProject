@@ -29,5 +29,6 @@ public interface StudentService {
 	static StudentService getInstance() {
 		return INSTANCE;
 	}
+	void createStudent(Student student);
 	
 }

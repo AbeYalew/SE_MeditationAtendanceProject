@@ -15,11 +15,11 @@
 <body>
 <div class="container">
 
-
+  <h1>User Role Is Successfully Changed</h1>
 	<fieldset class="col-md-4">
 		<legend>
-			<span class="text-info">${user.roles.role}</span> <span
-				class="text-primary">User </span>
+			<span
+				class="text-primary">The Role of this user is  </span><span class="text-info">${user.roles.role}</span> 
 		</legend>
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -53,15 +53,10 @@
 						<tr><td>Last Name: ${faculty.lastName}</td>							
 						</tr>				
                    </c:if>
-					<tr>												
-						<td>
-							<form action="../../get" method="GET">
-							<input type="hidden" class="form-control" id="id" name="userName" value="${user.name}" >
-								<button type="submit" class="btn btn-primary">less Details</button>								
-							</form>
-						</td>
-					</tr>
-				</table>				
+
+				</table>
+
+				
 			</div>
 		</div>
 	</fieldset>
