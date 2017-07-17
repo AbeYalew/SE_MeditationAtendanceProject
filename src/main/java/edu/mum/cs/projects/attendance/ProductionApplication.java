@@ -19,6 +19,7 @@ public class ProductionApplication {
 		
 		ApplicationContext context  =	SpringApplication.run(ProductionApplication.class, args);
 		
+		
 		SetupRepository setupRepository = context.getBean(SetupRepository.class);
 		
 		List<Setup> listSetup = setupRepository.findAll();
