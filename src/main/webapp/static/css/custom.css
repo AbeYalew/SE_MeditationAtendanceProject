@@ -88,16 +88,21 @@
 }
 
 
-.rotate > div 
-{
-  transform:rotate(290deg);
+th.rotate {
+  /* Something you can count on */
+  height: 110px;
+  white-space: nowrap;
 }
-.verticaltext {
-    transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
 
-    bottom: 45%;
-    position: absolute;
-    color: #ed217c;
+th.rotate > div {
+  transform: 
+    /* Magic Numbers */
+    /* translate(25px, 51px) */
+    /* 45 is really 360 - 45 */
+    rotate(270deg);
+  width: 15px;
 }
+/* th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
+} */

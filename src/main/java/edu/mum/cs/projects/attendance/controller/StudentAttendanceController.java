@@ -1,6 +1,12 @@
 package edu.mum.cs.projects.attendance.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +18,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.mum.cs.projects.attendance.domain.StudentAttendance;
 import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
+import edu.mum.cs.projects.attendance.domain.entity.BarcodeRecord;
 import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
 import edu.mum.cs.projects.attendance.domain.entity.Student;
 import edu.mum.cs.projects.attendance.service.AttendanceService;
 import edu.mum.cs.projects.attendance.service.CourseService;
 import edu.mum.cs.projects.attendance.service.EnrollmentService;
 import edu.mum.cs.projects.attendance.service.StudentService;
+import edu.mum.cs.projects.attendance.service.BarcodeService;
 import edu.mum.cs.projects.attendance.util.DateUtil;
 import edu.mum.cs.projects.attendance.util.IDNumberUtil;
 
@@ -42,6 +51,10 @@ public class StudentAttendanceController {
 	
     @Autowired
     EnrollmentService enrollmentService;
+    
+
+    @Autowired
+    BarcodeService barcodeService;
 
     @RequestMapping(value = "/my/courselist")
     public String getStudentCourseList(String studentid, Model model,Authentication authentication) {	
@@ -84,6 +97,37 @@ public class StudentAttendanceController {
 
 		return "studentCourseOfferingAttendance";
 	}
+    
+    @RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
+    public String getBarcodeRecordsListByDate(@RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
+    	LocalDate localDate = LocalDate.parse(recordDate);
+    	String redirectUrl="/courseOffering/getrecord/"+offeringId;
+
+    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+    	Date date=new Date();
+		try {
+			date = format.parse(recordDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<BarcodeRecord> barcodeRecords= barcodeService.getBarcodeRecordsListByDateAndStudentID(date, studentId);
+    	if(barcodeRecords.size()==0){
+    		System.out.println("----------------------------barcode recorde created");
+    		
+    		
+    		  barcodeService.addBarcodeRecordList(localDate, studentId);
+    	}else{
+    		System.out.println("---------------------------- bardcode deleted");
+    		  System.out.println(barcodeRecords);
+    		  barcodeService.deleteBarcodeRecordByBarcodeID(barcodeRecords.get(0).getId());
+    	}
+    	/*
+		model.addAttribute("barcodeRecords", barcodeRecords);
+*/
+		return "redirect:" + redirectUrl;
+    }
+
 
 }
 

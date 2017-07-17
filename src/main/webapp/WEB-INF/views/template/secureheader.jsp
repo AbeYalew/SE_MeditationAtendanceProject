@@ -18,6 +18,7 @@
     <link href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/static/css/main.css"/>" rel="stylesheet">
     <!-- Custom styles for this template -->
+     <link href="<c:url value="/static/css/custom.css"/>"  rel="stylesheet">
     <link href="<c:url value="/static/css/jumbotron.css"/>"  rel="stylesheet">
     <link href="<c:url value="/static/css/panels.css"/>"  rel="stylesheet">
 
@@ -84,7 +85,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <form action="/login" class="navbar-form navbar-right">
                 <sec:authorize access="isAuthenticated()">
-                   <a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-user"> ${userName} </span></a>
+                   <a class="navbar-brand" href="../user/get/${username}"> <span class="glyphicon glyphicon-user"> ${lastName} </span></a>
                 </sec:authorize>
 
                 <button type="submit" class="btn btn-success">Sign Out</button>

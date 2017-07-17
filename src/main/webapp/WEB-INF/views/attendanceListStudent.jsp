@@ -1,88 +1,120 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
-<div class="row">
-	<div class="col-md-10 col-md-offset-1">
 
-		<table class="table ">
-			<thead>
-				<tr>
-					<th>Offering ID</th>
-					<th>Course ID</th>
-					<th>Course Name</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>View Attendance</th>
-				</tr>
-
-			</thead>
-
+<div class="container">
+	<span class="label label-default">Course Offering Information</span>
+	<table class="table table-hover table-bordered">
+		<thead>
 			<tr>
-				<td>${studentAttendance.get(0).courseOffering.id}</td>
-				<td>${studentAttendance.get(0).courseOffering.course.number}</td>
-				<td>${studentAttendance.get(0).courseOffering.course.name}</td>
-
-				<td>${block.beginDate}</td>
-				<td>${block.endDate}</td>
-				<td>
-
-					<form action="/my/courselist" method="GET">
-
-						<button type="submit" class="btn btn-primary">Back To
-							List</button>
-					</form>
-				</td>
-
+				<th>Offering ID</th>
+				<th>Course ID</th>
+				<th>Course Name</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>View Attendance</th>
 			</tr>
 
+		</thead>
 
-		</table>
+		<tr>
+			<td>${studentAttendance.get(0).courseOffering.id}</td>
+			<td>${studentAttendance.get(0).courseOffering.course.number}</td>
+			<td>${studentAttendance.get(0).courseOffering.course.name}</td>
+
+			<td>${block.beginDate}</td>
+			<td>${block.endDate}</td>
+			<td>
+
+				<form action="/getallblocks" method="GET">
+
+					<button type="submit" class="btn btn-primary">Back To List</button>
+				</form>
+			</td>
+
+		</tr>
 
 
+	</table>
 
-		<div class="panel panel-primary">
-			<div class="panel-heading">My Attendance</div>
-			<div class="panel-body panel-clear ">
-				<table class="table table-bordered">
+	<div class="panel panel-primary">
+		<div class="panel-heading">My Attendance List</div>
+		<div class="panel-body">
+
+			<div class="col-sm-12">
+				<table class="table table-hover table-bordered" id="table">
+				
 					<thead>
 						<tr>
-							<!-- <th>Student ID</th>
-						<th>Student Name</th> -->
+							<th>Student ID</th>
+							<th>Student Name</th>
 							<c:forEach items="${block.sessions}" var="session">
-								<th class="vertical-text">
-									${session.date.toString().substring(5)}</th>
+								<c:set var="sdate" value="${session.date}" />
+								<th class="rotate"><div><span>${sdate}</span></div></th>
 
 							</c:forEach>
 						</tr>
 
 					</thead>
-					<c:forEach items="${studentAttendance}" var="studentA">
+					<tbody>
+						<c:forEach items="${studentAttendance}" var="studentA"
+							varStatus="iterstu">
 
-						<tr>
-							<%-- <td>${studentA.student.studentId}</td>
-						<td>${studentA.student.firstName}</td> --%>
+							<tr>
+								<td>${studentA.student.studentId}</td>
+								<td>${studentA.student.firstName}</td>
 
 
-							<c:forEach items="${studentA.attendance}" var="sttAtendance">
+								<c:forEach items="${studentA.attendance}" var="sttAtendance"
+									varStatus="iteratt">
 
-								<td><c:if test="${sttAtendance==true}">
-										<span style="color: green" class="glyphicon glyphicon-ok"></span>
-										<%-- <c:set var="present" value="${present + 1}" scope="page"/> --%>
-									</c:if> <c:if test="${sttAtendance==false}">
-										<%--  <c:set var="absent" value="${absent + 1}" scope="page"/> --%>
-										<span style="color: red" class="glyphicon glyphicon-remove"></span>
-									</c:if></td>
-							</c:forEach>
+									<td class="attendance"
+										data-id="${iteratt.index}id${iterstu.index}"
+										id-student="${iteratt.index}studentId${iterstu.index}"
+										id-session="${iteratt.index}sessionId${iterstu.index}"
+										data-student="${studentAttendance[iterstu.index].student.studentId}"
+										data-date="${block.sessions[iteratt.index].date}"><c:if
+											test="${sttAtendance==true}">
+											<span style="color: green" class="glyphicon glyphicon-ok"></span>
 
-						</tr>
-						<tr>
+										</c:if> <c:if test="${sttAtendance==false}">
 
-						</tr>
+											<span style="color: red" class="glyphicon glyphicon-remove"></span>
+										</c:if>
+										<form action="/attendance/update" method="GET">
+											<input type="text" class=" hidden form-control"
+												id="${iteratt.index}OfferingId${iterstu.index}" name="offeringId"
+												value="${studentAttendance.get(0).courseOffering.id}">
+											<input type="text" class=" hidden form-control"
+												id="${iteratt.index}studentId${iterstu.index}" name="studentId" value=""> <input
+												type="text" class=" hidden form-control" id="${iteratt.index}sessionId${iterstu.index}"
+												name="recordDate" value="">
 
-					</c:forEach>
 
+											<button type="submit" class=" hidden btn btn-xs btn-success"
+												id="${iteratt.index}id${iterstu.index}">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+
+
+										</form></td>
+
+								</c:forEach>
+
+							</tr>
+							<tr>
+
+							</tr>
+
+						</c:forEach>
+					</tbody>
 				</table>
+
+
+
+
 			</div>
 		</div>
 	</div>
 </div>
+
 <%@include file="/WEB-INF/views/template/footer.jsp"%>

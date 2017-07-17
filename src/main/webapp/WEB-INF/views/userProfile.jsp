@@ -39,12 +39,14 @@
 					<tr>
 						<td>Details: <a href="../user/getStudent/${user.studentId}/${user.name}">Details:</a>
 						</td>
+						<td><a href="editStudent/${user.studentId}/${user.name}"> edit</a> </td>
 					</tr>
 					</c:if>
 					<c:if test="${user.roles.role == 'FACULTY'}">
 					<tr>
-						<td>Details: <a href="../user/getFaculty/${user.facultyId}/${user.name}/">Details:</a>
+						<td>Details: <a href="../../user/getFaculty/${user.facultyId}/${user.name}/">Details:</a>
 						</td>
+						<td><a href="editFaculty/${user.facultyId}/${user.name}"> edit</a> </td>
 					</tr>
 					</c:if>
 
@@ -52,9 +54,8 @@
 			</div>
 		</div>
 	</fieldset>
-	<div class="clearfix"></div>
-	<a href="../matchs"> edit</a> |
-	<a href="../stadiums"> Home</a>
+	<div class="clearfix"></div>	
+	<a href="/student/find"> Home</a>
 	</div>
 
 

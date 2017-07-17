@@ -42,7 +42,7 @@
 						<tr><td>First Name: ${student.firstName}</td></tr>
 						<tr><td>Last Name: ${student.lastName}</td></tr>
 						<tr><td>Student Email: ${student.emailaddress}</td></tr>
-						<tr><td>Entry Date: ${student.entryDate}<td></tr>					
+						<tr><td>Entry Date: ${student.entryDate}<td></tr>				
 
 					</c:if>
 					
@@ -55,29 +55,18 @@
                    </c:if>
 					<tr>												
 						<td>
-							<form action="../../get/" method="GET">
+							<form action="../../get" method="GET">
 							<input type="hidden" class="form-control" id="id" name="userName" value="${user.name}" >
 								<button type="submit" class="btn btn-primary">less Details</button>								
 							</form>
-
-
-
 						</td>
-
 					</tr>
-					
-
-
-
-				</table>
-
-				
+				</table>				
 			</div>
 		</div>
 	</fieldset>
-	<div class="clearfix"></div>
-	<a href="../matchs"> edit</a> |
-	<a href="../stadiums"> Home</a>
+	<div class="clearfix"></div>	
+	<a href="/student/find"> Home</a>
 	</div>
 
 
