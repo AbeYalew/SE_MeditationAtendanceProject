@@ -17,25 +17,7 @@ import edu.mum.cs.projects.attendance.service.UserService;
 public class ProductionApplication {
 	public static void main(String[] args) {
 		
-		ApplicationContext context  =	SpringApplication.run(ProductionApplication.class, args);
-		
-		
-		SetupRepository setupRepository = context.getBean(SetupRepository.class);
-		
-		List<Setup> listSetup = setupRepository.findAll();
-		
-		if(listSetup == null || listSetup.size() == 0){
-			
-			UserService service = context.getBean(UserService.class);
-			service.creatUsers();
-			
-			Setup temp = new Setup();
-			temp.setVersion("1.0.0");
-			setupRepository.save(temp);
-			
-		}
-		
-		
+		ApplicationContext context  =	SpringApplication.run(ProductionApplication.class, args);	
 		
 	}
 }
