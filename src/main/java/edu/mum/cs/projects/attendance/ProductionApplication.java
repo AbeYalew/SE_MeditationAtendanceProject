@@ -24,10 +24,11 @@ public class ProductionApplication {
 		
 		List<Setup> listSetup = setupRepository.findAll();
 		
-		if(listSetup.size() == 0){
+		if(listSetup == null || listSetup.size() == 0){
 			
 			UserService service = context.getBean(UserService.class);
-			service.creatUsers();			
+			service.creatUsers();
+			
 			Setup temp = new Setup();
 			temp.setVersion("1.0.0");
 			setupRepository.save(temp);
