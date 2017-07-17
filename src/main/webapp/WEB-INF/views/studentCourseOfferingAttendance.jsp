@@ -25,7 +25,9 @@
 				<td>${block.endDate}</td>
 				<td>
 
-					<form action="/student/Courselist" method="GET">
+					<form
+						action="/student/CourselistWithId/${studentAttendance.get(0).student.studentId}"
+						method="GET">
 
 						<button type="submit" class="btn btn-primary">Back To
 							List</button>
@@ -48,34 +50,66 @@
 							<!-- <th>Student ID</th>
 						<th>Student Name</th> -->
 							<c:forEach items="${block.sessions}" var="session">
-								<th class="vertical-text">
-									${session.date.toString().substring(5)}</th>
+								<th class="rotate"><div>
+										<span>${session.date}</span>
+									</div></th>
 
 							</c:forEach>
 						</tr>
 
 					</thead>
-					<c:forEach items="${studentAttendance}" var="studentA">
+					<c:forEach items="${studentAttendance}" var="studentA"
+						varStatus="iterstu">
 
 						<tr>
 							<%-- <td>${studentA.student.studentId}</td>
 						<td>${studentA.student.firstName}</td> --%>
 
 
-							<c:forEach items="${studentA.attendance}" var="sttAtendance" varStatus="iter">
-								
-								<td data-date="${block.sessions[iter.count - 1].date}" 
-									class="attendance" 
-									data-student="${studentA.student.studentId}"
-									
-									><c:if test="${sttAtendance==true}">
+							<c:forEach items="${studentA.attendance}" var="sttAtendance"
+								varStatus="iteratt">
+
+								<td class="attendance"
+									data-id="${iteratt.index}id${iterstu.index}"
+									id-student="${iteratt.index}studentId${iterstu.index}"
+									id-session="${iteratt.index}sessionId${iterstu.index}"
+									data-student="${studentAttendance[iterstu.index].student.studentId}"
+									data-date="${block.sessions[iteratt.index].date}"><c:if
+										test="${sttAtendance==true}">
 										<span style="color: green" class="glyphicon glyphicon-ok"></span>
-										<%-- <c:set var="present" value="${present + 1}" scope="page"/> --%>
+
 									</c:if> <c:if test="${sttAtendance==false}">
-										<%--  <c:set var="absent" value="${absent + 1}" scope="page"/> --%>
+
 										<span style="color: red" class="glyphicon glyphicon-remove"></span>
-									</c:if></td>
+									</c:if>
+									<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FACULTY')">
+								
+									<form action="/attendance/update" method="GET">
+									<input type="text" class="hidden" name="atendanceType" value="one">
+										<input type="text" class=" hidden form-control"
+											id="${iteratt.index}OfferingId${iterstu.index}"
+											name="offeringId"
+											value="${studentAttendance.get(0).courseOffering.id}">
+										<input type="text" class=" hidden form-control"
+											id="${iteratt.index}studentId${iterstu.index}"
+											name="studentId" value=""> <input type="text"
+											class=" hidden form-control"
+											id="${iteratt.index}sessionId${iterstu.index}"
+											name="recordDate" value="">
+
+
+										<button type="submit" class=" hidden btn btn-xs btn-success"
+											id="${iteratt.index}id${iterstu.index}">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button>
+
+
+									</form>
+									</sec:authorize>
+									</td>
+
 							</c:forEach>
+
 
 						</tr>
 						<tr>

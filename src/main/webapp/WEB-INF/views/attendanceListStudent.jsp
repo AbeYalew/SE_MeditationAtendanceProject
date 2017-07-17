@@ -80,7 +80,10 @@
 
 											<span style="color: red" class="glyphicon glyphicon-remove"></span>
 										</c:if>
+										
+										<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FACULTY')">
 										<form action="/attendance/update" method="GET">
+										<input type="text" class="hidden" name="atendanceType" value="many">
 											<input type="text" class=" hidden form-control"
 												id="${iteratt.index}OfferingId${iterstu.index}" name="offeringId"
 												value="${studentAttendance.get(0).courseOffering.id}">
@@ -96,7 +99,10 @@
 											</button>
 
 
-										</form></td>
+										</form>
+										
+										</sec:authorize>
+										</td>
 
 								</c:forEach>
 

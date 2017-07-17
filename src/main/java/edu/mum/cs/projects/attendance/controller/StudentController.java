@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.mum.cs.projects.attendance.domain.entity.Student;
 import edu.mum.cs.projects.attendance.service.EnrollmentService;
 import edu.mum.cs.projects.attendance.service.StudentService;
+import edu.mum.cs.projects.attendance.util.IDNumberUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -74,6 +75,15 @@ public class StudentController {
     public String getStudentCourseList(String studentid, Model model,Authentication authentication) { 	
     	
 		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(authentication.getName()));	
+		String studentId = IDNumberUtil.convertToStudentId(authentication.getName());
+		model.addAttribute("studentID", studentId);
+		return "studentCoursesTaken";
+    }
+    @RequestMapping(value = "/student/CourselistWithId/{studentId}")
+    public String getStudentCourseListByStudentID(@PathVariable("studentId") String studentId, Model model) { 	
+    	
+		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(studentId));
+		model.addAttribute("studentID", studentId);
 
 		return "studentCoursesTaken";
     }

@@ -70,16 +70,14 @@ public class StudentAttendanceController {
         return "studentAttendance";
     }
     
-    @RequestMapping(value = "/attendance/student/{cofferingid}", method = RequestMethod.GET)
-	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model,Authentication authentication) {
+    @RequestMapping(value = "/attendance/student/{studentId}/{cofferingid}", method = RequestMethod.GET)
+	public String getAttendanceRecordsStudent(@PathVariable("studentId") String studentId, @PathVariable("cofferingid") long cofferingid, Model model,Authentication authentication) {
 
 		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
 
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
 		
-		String studentId = IDNumberUtil.convertToStudentId(Long.valueOf(authentication.getName()));
-
 		Student student = studentService.getStudentsById(studentId);
 
 		List<StudentAttendance> studentAttendance = attendanceService
@@ -99,9 +97,13 @@ public class StudentAttendanceController {
 	}
     
     @RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
-    public String getBarcodeRecordsListByDate(@RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
+    public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType, @RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
     	LocalDate localDate = LocalDate.parse(recordDate);
-    	String redirectUrl="/courseOffering/getrecord/"+offeringId;
+    	String redirectUrl;
+    	if(atendanceType.equals("one")){
+    		redirectUrl="/attendance/student/"+studentId+"/"+offeringId;
+    	}else{redirectUrl="/courseOffering/getrecord/"+offeringId;}
+    	
 
     	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     	Date date=new Date();

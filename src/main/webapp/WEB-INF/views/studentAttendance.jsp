@@ -46,6 +46,7 @@
                         <th>Student ID</th>
                         <th>Student Name</th>
                   <c:forEach items="${block.sessions}" var="session" >
+                  
                         <th class="rotate"><div><span>${session.date}</span></div></th>
                         
                          </c:forEach>
