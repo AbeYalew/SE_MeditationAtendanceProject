@@ -127,15 +127,22 @@ public class AttendanceServiceImpl implements AttendanceService {
 		List<Enrollment> enrollments = courseService.getEnrollment(courseOffering);
 
 		if (null == enrollments || enrollments.isEmpty()) {
+			System.out.println("no enrollments found");
 			return null;
 		}
 
 		AcademicBlock block = courseService
 				.getAcademicBlock(DateUtil.convertDateToString(courseOffering.getStartDate()));
 
+<<<<<<< HEAD
 		if (block == null) {
+=======
+		if( block == null){
+			System.out.println("academic block is null");
+>>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
 			return null;
 		}
+		
 		Date beginDate = DateUtil.convertLocalDateToDate(block.getBeginDate());
 		Date endDate = DateUtil.convertLocalDateToDate(block.getEndDate());
 		List<BarcodeRecord> barcodeRecords = barcodeRecordRepository.findByDateBetween(beginDate, endDate);

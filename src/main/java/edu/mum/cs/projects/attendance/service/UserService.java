@@ -1,6 +1,7 @@
 package edu.mum.cs.projects.attendance.service;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -79,6 +80,7 @@ public class UserService {
 			user.setRoles(role1);
 			userService.createUser(user);
 		}
+		
 		System.out.println("User Account for Faculty is creating.....");
 		Role role2 = new Role();
 		role2.setRole("FACULTY");

@@ -46,9 +46,10 @@
 						<td>${student.lastName}</td>
 						<td>${student.emailaddress}</td>
 						<td>
-							<form action="../student/edit/${student.studentId}" method="GET">
-								<button type="submit" class="btn btn-primary">Edit</button>
-								<button type="button" class="btn btn-danger">Delete</button>
+							<form action="/student/CourselistWithId/${student.studentId}" method="GET">
+							
+								<button type="submit" class="btn btn-primary">View Student Courses</button>
+								
 							</form>
 
 

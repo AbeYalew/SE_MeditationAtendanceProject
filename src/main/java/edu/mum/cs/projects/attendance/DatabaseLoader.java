@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import edu.mum.cs.projects.attendance.service.DatabaseLoaderService;
+import edu.mum.cs.projects.attendance.service.UserService;
 
 /**
  * <h1>Maharishi University of Management<br/>
@@ -27,6 +28,9 @@ public class DatabaseLoader {
 		DatabaseLoaderService service = context.getBean(DatabaseLoaderService.class);
 		service.loadDatabaseFromSpreadsheet();
 		service.loadScannedBarcodesToDatabase();
+		
+		UserService userService = context.getBean(UserService.class);
+		userService.creatUsers();
 		System.exit(0);
 	}
 

@@ -55,6 +55,19 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
+                    <li><a href="/faculty/courseList">Course List</a></li>
+                    <li role="separator" class="divider"></li>
+                    
+                    
+                </ul>
+            </li>
+
+            </sec:authorize>
+             <sec:authorize access="hasRole('ROLE_STAFF')">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">STAFF <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"></a></li>
                     <li><a href="/student/find">Find Student</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/course/list">Course List</a></li>

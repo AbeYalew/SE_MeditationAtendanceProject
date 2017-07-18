@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 1.0.0
  * 
  */
+
 @SpringBootApplication
 public class AttendanceReport {
 
