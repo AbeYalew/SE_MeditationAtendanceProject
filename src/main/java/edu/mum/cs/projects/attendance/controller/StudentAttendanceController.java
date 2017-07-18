@@ -71,28 +71,27 @@ public class StudentAttendanceController {
 	}
 
 
-	@RequestMapping(value = "/attendance/student/{cofferingid}", method = RequestMethod.GET)
-	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model,
-			Authentication authentication) {
+	@RequestMapping(value = "/attendance/student/{studentId}/{cofferingid}", method = RequestMethod.GET)
+	public String getAttendanceRecordsStudent(@PathVariable("studentId") String studentId, @PathVariable("cofferingid") long cofferingid, Model model,Authentication authentication) {
 
 		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
 
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
-
-
-		String studentId = IDNumberUtil.convertToStudentId(Long.valueOf(authentication.getName()));
-
+		
 		Student student = studentService.getStudentsById(studentId);
-		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
+		
 
-		if (studentAttendance == null) {
-			return "redirect:/student/Courselist?attendance=none";
+		List<StudentAttendance> studentAttendance = attendanceService
+					.retrieveStudentAttendanceRecords(coffering);
+		
+		if(studentAttendance == null){
+			return "redirect:/student/Courselist?attendance=none";			
 		}
-
-		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student))
-				.collect(Collectors.toList());
-
+		
+		
+		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student)).collect(Collectors.toList());
+		
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
 
