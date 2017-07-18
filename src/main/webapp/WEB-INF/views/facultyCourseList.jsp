@@ -37,7 +37,7 @@
 							<td>${offering.startDate}</td>
 							<td>
 								<form
-									action="../attendance/faculty/${offering.id}"
+									action="/courseOffering/getrecord/${offering.id}"
 									method="GET">
 									<button type="submit" class="btn btn-primary">view my attendace </button>
 								</form>
