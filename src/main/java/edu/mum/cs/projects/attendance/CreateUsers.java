@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import edu.mum.cs.projects.attendance.service.UserService;
 
 @SpringBootApplication
-
 public class CreateUsers {
      
 	public static void main(String[] args) {

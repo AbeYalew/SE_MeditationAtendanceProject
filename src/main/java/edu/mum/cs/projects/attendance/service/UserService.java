@@ -2,6 +2,7 @@ package edu.mum.cs.projects.attendance.service;
 
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -78,6 +79,7 @@ public class UserService {
 			user.setRoles(role);
 			userService.createUser(user);
 		}
+		
 		System.out.println("User Account for Faculty is creating.....");
 		for (Faculty faculty : facultyService.getAll()) {
 			Role role = new Role();
