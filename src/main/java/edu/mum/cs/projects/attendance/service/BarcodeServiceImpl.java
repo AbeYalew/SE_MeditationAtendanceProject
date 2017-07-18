@@ -29,150 +29,149 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
 
 @Service
 public class BarcodeServiceImpl implements BarcodeService {
-	
+
 	private static final String FILE_PATH = "src/main/resources/barcodes/BarcodeRecords.txt";
-	
+
 	@Autowired
 	private LocationRepository locationRepository;
-	
+
 	@Autowired
 	private TimeslotRepository timeslotRepository;
-	
-	//fire group
+
+	// fire group
 	@Autowired
 	private StudentService studentService;
-	//fire group
+	// fire group
 	@Autowired
 	private BarcodeRecordRepository barcodeRecordRepository;
-	
+
 	private static volatile Collection<BarcodeRecord> barcodeRecords;
-	
+
 	@Override
 	@Transactional
 	public List<BarcodeRecord> getBarcodeRecordsList() {
 		// Default is all dates
 		return getBarcodeRecordsList(LocalDate.ofEpochDay(0), LocalDate.now());
 	}
-	
+
 	@Override
 	@Transactional
 	public List<BarcodeRecord> getBarcodeRecordsList(LocalDate startDate, LocalDate endDate) {
 		Comparator<BarcodeRecord> byDate = (b1, b2) -> b1.getDate().compareTo(b2.getDate());
 		Comparator<BarcodeRecord> byTimeslot = (b1, b2) -> b1.getTimeslot().getId().compareTo(b2.getTimeslot().getId());
 		Comparator<BarcodeRecord> byBarcode = (b1, b2) -> b1.getBarcode().compareTo(b2.getBarcode());
-		
-		// The dates are decremented/incremented to make the date range inclusive
-		return getBarcodeRecords()
-					.stream()
-					.filter(b -> b.getDate().isAfter(startDate.minusDays(1)))
-					.filter(b -> b.getDate().isBefore(endDate.plusDays(1)))
-					.sorted(byDate.thenComparing(byTimeslot).thenComparing(byBarcode))
-					.collect(Collectors.toList());
+
+		// The dates are decremented/incremented to make the date range
+		// inclusive
+		return getBarcodeRecords().stream().filter(b -> b.getDate().isAfter(startDate.minusDays(1)))
+				.filter(b -> b.getDate().isBefore(endDate.plusDays(1)))
+				.sorted(byDate.thenComparing(byTimeslot).thenComparing(byBarcode)).collect(Collectors.toList());
 	}
-	
+
 	private Collection<BarcodeRecord> getBarcodeRecords() {
-		if(null == barcodeRecords) {
+		if (null == barcodeRecords) {
 			barcodeRecords = loadBarcodeRecords();
 		}
-		
+
 		return barcodeRecords;
 	}
-	
+
 	private synchronized Collection<BarcodeRecord> loadBarcodeRecords() {
-		if(null != barcodeRecords) {
+		if (null != barcodeRecords) {
 			return barcodeRecords;
 		}
-		
+
 		System.out.println("Loading scanned barcode records...");
-		
+
 		File file = new File(FILE_PATH);
 		long fileSize = file.length();
 
-		Map<String, BarcodeRecord> dataMap = new HashMap<String, BarcodeRecord>((int)(fileSize/20));
-		
+		Map<String, BarcodeRecord> dataMap = new HashMap<String, BarcodeRecord>((int) (fileSize / 20));
+
 		try {
 			Scanner sc = new Scanner(file);
-			
+
 			while (sc.hasNextLine()) {
 				String line = sc.nextLine().trim();
-				
-				if(line.isEmpty()) {
+
+				if (line.isEmpty()) {
 					continue;
 				}
-						
+
 				// Removes duplicates
-				if(dataMap.containsKey(line)) {
+				if (dataMap.containsKey(line)) {
 					System.out.println("Duplicate line found in scanned barcode import: " + line);
 					continue;
+				} else {
+					dataMap.put(line, convertLineToBarcodeRecord(line));
 				}
-				else {
-					dataMap.put(line,  convertLineToBarcodeRecord(line));
-				}
-			}			
-			
+			}
+
 			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return dataMap.values();
 	}
-	
+
 	private BarcodeRecord convertLineToBarcodeRecord(String line) {
 		String[] parts = line.split(",");
-		
-		String barcode = parts[0];		
+
+		String barcode = parts[0];
 		LocalDate date = DateUtil.convertDateToLocalDate(DateUtil.convertOldFormatStringToDate(parts[1]));
 		LocalTime time = LocalTime.of(00, 00);
 		Timeslot timeslot = timeslotRepository.findOne(parts[2]);
 		Location location = locationRepository.findOne(parts[3]);
-		
+
 		return new BarcodeRecord(barcode, date, time, timeslot, location);
 	}
-	
-	///added by fire group
+
+	/// added by fire group
 	public List<BarcodeRecord> getBarcodeRecordsListByDateAndStudentID(Date startDate, String studentId) {
-	
-		Student student= studentService.getStudentsById(studentId);
-		return barcodeRecordRepository.findByDate(startDate)
-				.stream()
-				.filter(b -> b.getBarcode().equals(student.getBarcode()))
-				.collect(Collectors.toList());
+
+		Student student = studentService.getStudentsById(studentId);
+		return barcodeRecordRepository.findByDate(startDate).stream()
+				.filter(b -> b.getBarcode().equals(student.getBarcode())).collect(Collectors.toList());
 	}
-	
+
 	public void deleteBarcodeRecordByBarcodeID(Long barcodeid) {
-		
+
 		barcodeRecordRepository.deleteById(barcodeid);
 	}
-	
-	public void addBarcodeRecordList(LocalDate date, String studentId){
-		Student student= studentService.getStudentsById(studentId);
+
+	public void addBarcodeRecordList(LocalDate date, String studentId) {
+		Student student = studentService.getStudentsById(studentId);
 		LocalTime time = LocalTime.of(00, 00);
 		Timeslot timeslot = timeslotRepository.findOne("AM");
 		Location location = locationRepository.findOne("DB");
 
+<<<<<<< HEAD
+		BarcodeRecord newBarcoderecord = new BarcodeRecord(student.getBarcode(), date, time, timeslot, location);
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++" + newBarcoderecord);
+=======
 		BarcodeRecord newBarcoderecord= new BarcodeRecord(student.getBarcode(), date,time, timeslot, location);
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++"+newBarcoderecord);
+	
+>>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
 		barcodeRecordRepository.save(newBarcoderecord);
 	}
-	
-	
-	
-//	private static Location getLocationById(String id) {
-//		List<Location> locations = SpreadsheetReaderDAO.getLocationList();
-//		
-//		return locations.stream().filter(l -> l.getId().equals(id)).findAny().get();
-//	}
-//	
-//	private static Timeslot getTimeslotById(String id) {
-//		List<Timeslot> slots = SpreadsheetReaderDAO.getTimeslotList();
-//		
-//		return slots.stream().filter(s -> s.getId().equals(id)).findAny().get();
-//	}
-//
-//	public static void main(String[] args) {
-//		List<BarcodeRecord> list = getBarcodeRecordsList();
-//		list.stream().forEach(System.out::println);
-//		System.out.println("Number of records processed: " + list.size());
-//	}
+
+	// private static Location getLocationById(String id) {
+	// List<Location> locations = SpreadsheetReaderDAO.getLocationList();
+	//
+	// return locations.stream().filter(l ->
+	// l.getId().equals(id)).findAny().get();
+	// }
+	//
+	// private static Timeslot getTimeslotById(String id) {
+	// List<Timeslot> slots = SpreadsheetReaderDAO.getTimeslotList();
+	//
+	// return slots.stream().filter(s -> s.getId().equals(id)).findAny().get();
+	// }
+	//
+	// public static void main(String[] args) {
+	// List<BarcodeRecord> list = getBarcodeRecordsList();
+	// list.stream().forEach(System.out::println);
+	// System.out.println("Number of records processed: " + list.size());
+	// }
 }

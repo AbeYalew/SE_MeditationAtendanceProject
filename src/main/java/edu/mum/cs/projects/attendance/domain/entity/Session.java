@@ -20,10 +20,13 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
 import edu.mum.cs.projects.attendance.util.DateUtil;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.<br/>
- * Represents a session in a block when attendance is mandatory.</p>
+ * <p>
+ * Domain entity. Simple POJO.<br/>
+ * Represents a session in a block when attendance is mandatory.
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -33,23 +36,23 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
  * 
  */
 @Entity
-@Table(name="Attendance_Session")
+@Table(name = "Attendance_Session")
 @Immutable
 public class Session implements Identifiable<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	private Long id;
 
 	@ManyToOne
-    private AcademicBlock block;
+	private AcademicBlock block;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Timeslot timeslot;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
-    private Date date;
+	private Date date;
 
 	public Session() {
 		super();

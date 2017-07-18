@@ -57,17 +57,17 @@ public class CourseServiceImpl implements CourseService {
 
 		List<CourseOffering> offerings = courseOfferingRepository.findByStartDate(date);
 
-		return offerings.stream()
-				.filter(o -> o.isOnCampus() && o.isActive())
-				.peek(o -> o.setBlock(block))
+		return offerings.stream().filter(o -> o.isOnCampus() && o.isActive()).peek(o -> o.setBlock(block))
 				.collect(Collectors.toList());
 	}
-//-----------added
+
+	// -----------added
 	@Override
 	public CourseOffering getCourseOfferingbyID(long courseofferingId) {
 		CourseOffering offering = courseOfferingRepository.findById(courseofferingId);
 		return offering;
 	}
+
 	@Override
 	public AcademicBlock getAcademicBlock(String blockBeginDate) {
 		Date beginDate = DateUtil.convertStringToDate(blockBeginDate);
@@ -80,11 +80,12 @@ public class CourseServiceImpl implements CourseService {
 				.filter(o -> Enrollment.Status.SIGNEDUP.toString().equalsIgnoreCase(o.getStatus()))
 				.collect(Collectors.toList());
 	}
-	//to get all the acadamic blocks so that we can choose corse fofering for each blocks
+
+	// to get all the acadamic blocks so that we can choose corse fofering for
+	// each blocks
 	@Override
 	public List<AcademicBlock> getAllAcademicBlock() {
 		return academicBlockRepository.findAll();
 	}
-	
 
 }

@@ -11,11 +11,12 @@ public interface BarcodeService {
 	List<BarcodeRecord> getBarcodeRecordsList();
 
 	List<BarcodeRecord> getBarcodeRecordsList(LocalDate startDate, LocalDate endDate);
-	//fire group
+
+	// fire group
 	List<BarcodeRecord> getBarcodeRecordsListByDateAndStudentID(Date startDate, String studentId);
-	
+
 	void deleteBarcodeRecordByBarcodeID(Long barcodeid);
-	
+
 	void addBarcodeRecordList(LocalDate date, String studentId);
 
 }

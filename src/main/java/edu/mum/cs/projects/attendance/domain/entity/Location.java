@@ -8,10 +8,13 @@ import javax.persistence.Table;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.<br/>
- * Represents a classroom or program hall location.</p>
+ * <p>
+ * Domain entity. Simple POJO.<br/>
+ * Represents a classroom or program hall location.
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -21,28 +24,28 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
  * 
  */
 @Entity
-@Table(name="Attendance_Location")
+@Table(name = "Attendance_Location")
 public class Location implements Identifiable<String> {
 
 	@Id
-    private String id;
-	
-	@Column(nullable=false)
-    private String name;
-    
-	@Column(nullable=false)
-    private String building;
-    
-	@Column(nullable=true)
-    private String room;
-    
-    @Column(nullable=false)
-    private int capacity;
+	private String id;
 
-    public Location() {
-    }
+	@Column(nullable = false)
+	private String name;
 
-    public String getId() {
+	@Column(nullable = false)
+	private String building;
+
+	@Column(nullable = true)
+	private String room;
+
+	@Column(nullable = false)
+	private int capacity;
+
+	public Location() {
+	}
+
+	public String getId() {
 		return id;
 	}
 
@@ -51,12 +54,12 @@ public class Location implements Identifiable<String> {
 	}
 
 	public String getName() {
-        return name;
-    }
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getBuilding() {
 		return building;

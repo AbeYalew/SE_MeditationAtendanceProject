@@ -21,11 +21,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
-			<name>org.eclipse.wst.validation.validationbuilder</name>
-=======
 			<name>org.eclipse.babel.editor.rbeBuilder</name>
->>>>>>> ee4105a00b505c9734b94e2a81143cf34d6d665e
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -34,12 +30,23 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.wst.validation.validationbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
+		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
 		<nature>org.springframework.ide.eclipse.core.springnature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+<<<<<<< HEAD
+=======
 		<nature>com.jaspersoft.studio.babel.editor.rbeNature</nature>
+		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+>>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
 	</natures>
 </projectDescription>

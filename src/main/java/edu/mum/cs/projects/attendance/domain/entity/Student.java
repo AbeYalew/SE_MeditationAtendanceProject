@@ -14,9 +14,12 @@ import org.hibernate.annotations.Immutable;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.</p>
+ * <p>
+ * Domain entity. Simple POJO.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -26,43 +29,43 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
  */
 @Entity
 @Immutable
-@Table(name="person")
-@SecondaryTable(name="student",
-	pkJoinColumns=@PrimaryKeyJoinColumn(name="studentid"))
+@Table(name = "person")
+@SecondaryTable(name = "student", pkJoinColumns = @PrimaryKeyJoinColumn(name = "studentid"))
 public class Student implements Identifiable<String> {
-	
+
 	@Id
-	@Column(name="personid", columnDefinition = "char(11)")
+	@Column(name = "personid", columnDefinition = "char(11)")
 	private String studentId;
-	
-	@Column(name="firstname")
+
+	@Column(name = "firstname")
 	private String firstName;
-	
-	@Column(name="lastname")
+
+	@Column(name = "lastname")
 	private String lastName;
-	
-	@Column(name="emailaddress")
+
+	@Column(name = "emailaddress")
 	private String emailaddress;
-	
-	@Column(table="student", name="visastatus", columnDefinition = "nvarchar(50)")
+
+	@Column(table = "student", name = "visastatus", columnDefinition = "nvarchar(50)")
 	private String visaStatus;
-	
-	@Column(table="student", columnDefinition = "nvarchar(50)")
+
+	@Column(table = "student", columnDefinition = "nvarchar(50)")
 	private String status;
-	
-	@Column(table="student", name="entry", columnDefinition = "datetime")
+
+	@Column(table = "student", name = "entry", columnDefinition = "datetime")
 	private Date entryDate;
-	
-	@Column(table="student", columnDefinition = "char(13)")
+
+	@Column(table = "student", columnDefinition = "char(13)")
 	private String barcode;
-	
-	public Student() {}
+
+	public Student() {
+	}
 
 	@Override
 	public String getId() {
 		return getStudentId();
 	}
-	
+
 	public String getStudentId() {
 		return studentId;
 	}

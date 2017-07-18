@@ -8,9 +8,12 @@ import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
 import edu.mum.cs.projects.attendance.domain.entity.Enrollment;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Service layer facade, hides away details of dataaccess layer from client.</p>
+ * <p>
+ * Service layer facade, hides away details of dataaccess layer from client.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -18,7 +21,7 @@ import edu.mum.cs.projects.attendance.domain.entity.Enrollment;
  * @since 1.0.0
  */
 public interface CourseService {
-	
+
 	List<Enrollment> getEnrollment(CourseOffering offering);
 
 	List<ComproEntry> getComproEntries(String startDate);
@@ -26,9 +29,11 @@ public interface CourseService {
 	List<CourseOffering> getCourseOfferings(String blockId);
 
 	AcademicBlock getAcademicBlock(String blockStartDate);
-	//added
+
+	// added
 	CourseOffering getCourseOfferingbyID(long id);
-	//added
+
+	// added
 	List<AcademicBlock> getAllAcademicBlock();
-	
+
 }

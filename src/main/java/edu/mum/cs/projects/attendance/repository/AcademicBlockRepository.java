@@ -9,9 +9,13 @@ import org.springframework.stereotype.Repository;
 import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>This is a spring-data repository class responsible for CRUD operations pertaining to "AcademicBlock"</p>
+ * <p>
+ * This is a spring-data repository class responsible for CRUD operations
+ * pertaining to "AcademicBlock"
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -20,7 +24,8 @@ import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
  * 
  */
 @Repository
-public interface AcademicBlockRepository extends CrudRepository<AcademicBlock, String>{
+public interface AcademicBlockRepository extends CrudRepository<AcademicBlock, String> {
 	AcademicBlock findByBeginDate(Date beginDate);
+
 	List<AcademicBlock> findAll();
 }

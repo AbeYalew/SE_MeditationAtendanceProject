@@ -16,9 +16,12 @@ import org.hibernate.annotations.Immutable;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.</p>
+ * <p>
+ * Domain entity. Simple POJO.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -29,26 +32,28 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
 @Entity
 @Immutable
 public class Enrollment implements Identifiable<Long> {
-	
-	public enum Status {SIGNEDUP, INACTIVE, OTHER}
-	
+
+	public enum Status {
+		SIGNEDUP, INACTIVE, OTHER
+	}
+
 	@Id
 	@Column(columnDefinition = "int")
 	private Long id;
-	
+
 	@Column(columnDefinition = "datetime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
-	
+
 	@Column(columnDefinition = "nvarchar(50)")
 	private String status;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="studentid")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "studentid")
 	private Student student;
-	
+
 	@ManyToOne
-	@JoinColumn(name="offerid")
+	@JoinColumn(name = "offerid")
 	private CourseOffering offering;
 
 	public Long getId() {
@@ -121,5 +126,5 @@ public class Enrollment implements Identifiable<Long> {
 		return "Enrollment [id=" + id + ", date=" + date + ", status=" + status + ", student=" + student + ", offering="
 				+ offering + "]";
 	}
-	
+
 }
