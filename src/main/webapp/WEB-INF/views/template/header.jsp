@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url(/home.jpg); height: 60vh; background-attachment: fixed; background-size: auto 100vh;background-repeat: no-repeat;margin-bottom:40px;">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -43,5 +43,3 @@
         </div><!--/.navbar-collapse -->
     </div>
 </nav>
-<p></p>
-<p></p>
