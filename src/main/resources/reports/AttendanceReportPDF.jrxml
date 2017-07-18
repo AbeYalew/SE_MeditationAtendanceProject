@@ -65,7 +65,7 @@
 			<staticText>
 				<reportElement x="200" y="-10" width="130" height="20" uuid="a4fbc7d3-0ab9-4e28-8f90-3eee0d21ec82"/>
 				<textElement>
-					<font fontName="Book Antiqua" size="12" isBold="true" isUnderline="true"/>
+					<font fontName="SansSerif" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Attendance Report]]></text>
 			</staticText>
