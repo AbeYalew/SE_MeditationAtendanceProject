@@ -17,11 +17,8 @@ public interface CourseOfferingRepository extends CrudRepository<CourseOffering,
 	List<CourseOffering> findByCourse(Course course);
 
 	CourseOffering findById(long id);
-<<<<<<< HEAD
 
-=======
-	List<CourseOffering> findByFaculty(Faculty course);
+	List<CourseOffering> findByFaculty(Faculty course);	
 	
-	
->>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
+
 }

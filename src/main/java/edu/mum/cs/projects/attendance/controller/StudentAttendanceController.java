@@ -48,17 +48,12 @@ public class StudentAttendanceController {
 
 	@Autowired
 	EnrollmentService enrollmentService;
-<<<<<<< HEAD
+
 
 	@Autowired
 	BarcodeService barcodeService;
 
-=======
 
-	@Autowired
-	BarcodeService barcodeService;
-
->>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
 	@RequestMapping(value = "/my/courselist")
 	public String getStudentCourseList(String studentid, Model model, Authentication authentication) {
 
@@ -67,15 +62,6 @@ public class StudentAttendanceController {
 
 		return "studentCourseList";
 	}
-<<<<<<< HEAD
-
-	@RequestMapping(value = "/my/attendance")
-	public String getStudentAttendanceforAcourse(String offeringid, String studentid, Model model) {
-
-		return "studentAttendance";
-	}
-
-=======
 
 	@RequestMapping(value = "/my/attendance")
 	public String getStudentAttendanceforAcourse(String offeringid, String studentid, Model model) {
@@ -84,7 +70,7 @@ public class StudentAttendanceController {
 		return "studentAttendance";
 	}
 
->>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
+
 	@RequestMapping(value = "/attendance/student/{cofferingid}", method = RequestMethod.GET)
 	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model,
 			Authentication authentication) {
@@ -94,19 +80,10 @@ public class StudentAttendanceController {
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
 
-<<<<<<< HEAD
-=======
 
->>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
 		String studentId = IDNumberUtil.convertToStudentId(Long.valueOf(authentication.getName()));
 
-
-<<<<<<< HEAD
-=======
 		Student student = studentService.getStudentsById(studentId);
-		
-
->>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
 		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
 
 		if (studentAttendance == null) {
@@ -121,18 +98,7 @@ public class StudentAttendanceController {
 
 		return "studentCourseOfferingAttendance";
 	}
-<<<<<<< HEAD
 
-	@RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
-	public String getBarcodeRecordsListByDate(@RequestParam("offeringId") String offeringId,
-			@RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
-		LocalDate localDate = LocalDate.parse(recordDate);
-		String redirectUrl = "/courseOffering/getrecord/" + offeringId;
-
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		Date date = new Date();
-=======
-    
     @RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
     public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType, @RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
     	LocalDate localDate = LocalDate.parse(recordDate);
@@ -145,7 +111,7 @@ public class StudentAttendanceController {
     	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     	Date date=new Date();
 
->>>>>>> c8dab2afa15303b18f9823cc30d8fffc44757944
+
 		try {
 			date = format.parse(recordDate);
 		} catch (ParseException e) {
