@@ -146,7 +146,6 @@ public class BarcodeServiceImpl implements BarcodeService {
 		Timeslot timeslot = timeslotRepository.findOne("AM");
 		Location location = locationRepository.findOne("DB");
 
-
 		BarcodeRecord newBarcoderecord= new BarcodeRecord(student.getBarcode(), date,time, timeslot, location);
 	
 
