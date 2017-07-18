@@ -35,9 +35,10 @@
 								${enrolledCourse.offering.course.name }</td>
 							<td>${enrolledCourse.offering.period}</td>
 							<td>${enrolledCourse.offering.startDate}</td>
-							<td>
+							<td><!-- {studentID}/ -->
 								<form
-									action="/attendance/student/${studentID}/${enrolledCourse.offering.id}"
+									action="/attendance/student/${enrolledCourse.offering.id}"
+									
 									method="GET">
 									
 									<button type="submit" class="btn btn-primary">view attendance </button>
