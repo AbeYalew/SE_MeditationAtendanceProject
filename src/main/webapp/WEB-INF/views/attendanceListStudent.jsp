@@ -29,6 +29,10 @@
 
 					<button type="submit" class="btn btn-primary">Back To List</button>
 				</form>
+				<form action="/courseOffering/getreport/${studentAttendance.get(0).courseOffering.id}" method="GET">
+
+					<button type="submit" class="btn btn-primary">Print PDF Report</button>
+				</form>
 			</td>
 
 		</tr>
@@ -81,7 +85,7 @@
 											<span style="color: red" class="glyphicon glyphicon-remove"></span>
 										</c:if>
 										
-										<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_FACULTY')">
+										<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_STAFF')">
 										<form action="/attendance/update" method="GET">
 										<input type="text" class="hidden" name="atendanceType" value="many">
 											<input type="text" class=" hidden form-control"

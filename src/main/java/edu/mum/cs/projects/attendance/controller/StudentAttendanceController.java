@@ -79,6 +79,7 @@ public class StudentAttendanceController {
 		coffering.setBlock(block);
 		
 		Student student = studentService.getStudentsById(studentId);
+		
 
 		List<StudentAttendance> studentAttendance = attendanceService
 					.retrieveStudentAttendanceRecords(coffering);

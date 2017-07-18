@@ -76,6 +76,7 @@ public class StudentController {
     	
 		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(authentication.getName()));	
 		String studentId = IDNumberUtil.convertToStudentId(authentication.getName());
+		System.out.println("------------------"+studentId);
 		model.addAttribute("studentID", studentId);
 		return "studentCoursesTaken";
     }

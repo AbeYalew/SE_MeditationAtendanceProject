@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.mum.cs.projects.attendance.Report.AttendanceReportPrint;
 import edu.mum.cs.projects.attendance.domain.StudentAttendance;
 import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
 import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
@@ -53,8 +54,23 @@ public class CourseController {
 		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
+		model.addAttribute("studentAttendance", studentAttendance);
 
 		return "attendanceListStudent";
+	}
+	@RequestMapping(value = "/courseOffering/getreport/{cofferingid}", method = RequestMethod.GET)
+	public String getAttendanceRecordsReport(@PathVariable("cofferingid") long cofferingid, Model model) {
+
+		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
+		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
+		coffering.setBlock(block);
+		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
+		/*model.addAttribute("studentAttendance", studentAttendance);
+		model.addAttribute("block", block);*/
+		
+		model.addAttribute("attendancereportPrint", AttendanceReportPrint.ConvertToMap(studentAttendance));
+
+		return "attendanceReportPrint";
 	}
 
 	@RequestMapping(value = "/courseOffering/student/{cofferingid}", method = RequestMethod.GET)
