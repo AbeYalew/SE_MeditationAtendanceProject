@@ -64,6 +64,7 @@ public class StudentAttendanceController {
 	@RequestMapping(value = "/my/attendance")
 	public String getStudentAttendanceforAcourse(String offeringid, String studentid, Model model) {
 
+
 		return "studentAttendance";
 	}
 
