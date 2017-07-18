@@ -152,7 +152,7 @@ public class BarcodeServiceImpl implements BarcodeService {
 		Location location = locationRepository.findOne("DB");
 
 		BarcodeRecord newBarcoderecord= new BarcodeRecord(student.getBarcode(), date,time, timeslot, location);
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++"+newBarcoderecord);
+	
 		barcodeRecordRepository.save(newBarcoderecord);
 	}
 	

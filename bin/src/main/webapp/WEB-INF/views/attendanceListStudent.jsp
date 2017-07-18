@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
 
 <div class="container">
@@ -24,15 +25,18 @@
 			<td>${block.beginDate}</td>
 			<td>${block.endDate}</td>
 			<td>
+				<sec:authorize access="hasRole('ROLE_FACULTY')">
 				<form action="/faculty/courseList" method="GET">
 
 					<button type="submit" class="btn btn-primary">Back To List</button>
 				</form>
-				
+				</sec:authorize>
+				<sec:authorize access="hasAnyRole('ROLE_STAFF','ROLE_ADMIN')">
 				<form action="/getallblocks" method="GET">
 
 					<button type="submit" class="btn btn-primary">Back To List</button>
 				</form>
+				</sec:authorize>
 				<form action="/courseOffering/getreport/${studentAttendance.get(0).courseOffering.id}" method="GET">
 
 					<button type="submit" class="btn btn-primary">Print PDF Report</button>
