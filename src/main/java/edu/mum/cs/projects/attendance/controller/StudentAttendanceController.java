@@ -76,9 +76,12 @@ public class StudentAttendanceController {
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
 
+
 		String studentId = IDNumberUtil.convertToStudentId(Long.valueOf(authentication.getName()));
 
+
 		Student student = studentService.getStudentsById(studentId);
+		
 
 		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
 
@@ -94,33 +97,19 @@ public class StudentAttendanceController {
 
 		return "studentCourseOfferingAttendance";
 	}
+    
+    @RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
+    public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType, @RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
+    	LocalDate localDate = LocalDate.parse(recordDate);
+    	String redirectUrl;
+    	if(atendanceType.equals("one")){
+    		redirectUrl="/attendance/student/"+studentId+"/"+offeringId;
+    	}else{redirectUrl="/courseOffering/getrecord/"+offeringId;}
+    	
 
-	@RequestMapping(value = "/attendance/faculty/{cofferingid}", method = RequestMethod.GET)
-	public String getAttendanceRecordsFaculty(@PathVariable("cofferingid") long cofferingid, Model model,
-			Authentication authentication) {
+    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+    	Date date=new Date();
 
-		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
-
-		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
-		coffering.setBlock(block);
-
-		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
-
-		System.out.println("attendance list" + studentAttendance);
-		model.addAttribute("studentAttendance", studentAttendance);
-		model.addAttribute("block", block);
-
-		return "facultyCourseOfferingAttendance";
-	}
-
-	@RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
-	public String getBarcodeRecordsListByDate(@RequestParam("offeringId") String offeringId,
-			@RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
-		LocalDate localDate = LocalDate.parse(recordDate);
-		String redirectUrl = "/courseOffering/getrecord/" + offeringId;
-
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		Date date = new Date();
 		try {
 			date = format.parse(recordDate);
 		} catch (ParseException e) {
