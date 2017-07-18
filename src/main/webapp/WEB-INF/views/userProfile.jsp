@@ -23,7 +23,7 @@
 		</legend>
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<table class="table table-striped table table-hover">
+				<table class="table table-striped table table-condensed">
 					
 					<tr>
 						<td>UserId: ${user.id}</td>
@@ -35,38 +35,26 @@
 					<tr>
 						<td>Role: ${user.roles.role}</td>
 					</tr>
-					<c:if test="${user.roles.role == 'STUDENT'}">					
-					
-						<tr>
-							<td>Student ID: ${student.studentId}</td></tr>
-						<tr><td>First Name: ${student.firstName}</td></tr>
-						<tr><td>Last Name: ${student.lastName}</td></tr>
-						<tr><td>Student Email: ${student.emailaddress}</td></tr>
-						<tr><td>Entry Date: ${student.entryDate}<td></tr>				
-
-					</c:if>
-					
-				  <c:if test="${user.roles.role == 'FACULTY'}">				
-						<tr>
-							<td>Faculty ID: ${faculty.id}</td>
-						<tr><td>First Name: ${faculty.firstName}</td></tr>
-						<tr><td>Last Name: ${faculty.lastName}</td>							
-						</tr>				
-                   </c:if>
-					<tr>												
-						<td>
-							<form action="../../get" method="GET">
-							<input type="hidden" class="form-control" id="id" name="userName" value="${user.name}" >
-								<button type="submit" class="btn btn-primary">less Details</button>								
-							</form>
+					<c:if test="${user.roles.role == 'STUDENT'}">
+					<tr>
+						<td>Details: <a href="../user/getStudent/${user.studentId}/${user.name}">Details:</a>
 						</td>
 					</tr>
-				</table>				
+					</c:if>
+					<c:if test="${user.roles.role == 'FACULTY'}">
+					<tr>
+						<td>Details: <a href="../user/getFaculty/${user.facultyId}/${user.name}/">Details:</a>
+						</td>
+					</tr>
+					</c:if>
+
+				</table>
 			</div>
 		</div>
 	</fieldset>
-	<div class="clearfix"></div>	
-	<a href="/student/find"> Home</a>
+	<div class="clearfix"></div>
+	<a href="../matchs"> edit</a> |
+	<a href="../stadiums"> Home</a>
 	</div>
 
 
