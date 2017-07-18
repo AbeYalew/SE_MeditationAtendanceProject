@@ -2,13 +2,13 @@ package edu.mum.cs.projects.attendance.domain;
 
 public class Email {
 	private String from;
-	
+
 	private String to;
 	private String cc;
 	private String bc;
-	
+
 	private String subject;
-	
+
 	private String body;
 
 	public Email(String from, String to, String subject, String body) {

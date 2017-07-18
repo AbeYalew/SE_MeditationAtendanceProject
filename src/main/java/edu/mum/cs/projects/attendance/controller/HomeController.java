@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class HomeController {
 
-    @RequestMapping("/")
-    public String home(){
-        return "home";
-    }
+	@RequestMapping("/")
+	public String home() {
+		return "home";
+	}
 }

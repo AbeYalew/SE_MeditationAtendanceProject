@@ -14,9 +14,12 @@ import edu.mum.cs.projects.attendance.repository.StudentRepository;
 import edu.mum.cs.projects.attendance.util.DateUtil;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Service layer facade, hides away details of dataaccess layer from client.</p>
+ * <p>
+ * Service layer facade, hides away details of dataaccess layer from client.
+ * </p>
  *
  * @see edu.mum.cs.projects.attendance.service.StudentService
  *
@@ -27,41 +30,44 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
  */
 @Service
 public class StudentServiceImpl implements StudentService {
-	
+
 	@Autowired
 	private StudentRepository studentRepository;
-	
-	private Map<String, String> barcodeMap; 
-	
+
+	private Map<String, String> barcodeMap;
+
 	{
 
 	}
-	
+
 	private Map<String, String> getBarcodeMap() {
-		if(null == barcodeMap) {
+		if (null == barcodeMap) {
 			barcodeMap = new HashMap<>();
 			List<Barcode> barcodeList = SpreadsheetReaderDAO.loadBarcodeList();
-			for(Barcode barcode : barcodeList) {
+			for (Barcode barcode : barcodeList) {
 				barcodeMap.put(barcode.getStudentId(), barcode.getBarcodeId());
-			}			
+			}
 		}
-		
+
 		return barcodeMap;
 	}
-   
-	//added by fire group
+
+	// added by fire group
 	@Override
 	public String getBarcodeId(String studentId) {
 		return getBarcodeMap().get(studentId);
 	}
+
 	@Override
 	public List<Student> getStudentsByEntry(String entryDate) {
 		return studentRepository.findByEntryDate(DateUtil.convertStringToDate(entryDate));
 	}
+
 	@Override
 	public Student getStudentsById(String id) {
 		return studentRepository.findBystudentId(id);
 	}
+
 	@Override
 	public List<Student> getAllStudents() {
 		return studentRepository.findAll();
@@ -70,6 +76,6 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void createStudent(Student student) {
 		studentRepository.save(student);
-		
+
 	}
 }

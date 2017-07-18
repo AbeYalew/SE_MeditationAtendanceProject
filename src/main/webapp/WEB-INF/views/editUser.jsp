@@ -92,6 +92,8 @@
 
 		</div>
 	</div>
-</div>
-</div>
+
+<div class="clearfix"></div>	
+	<a href="/student/find"> Home</a>
+	</div>
 <%@include file="/WEB-INF/views/template/footer.jsp"%>

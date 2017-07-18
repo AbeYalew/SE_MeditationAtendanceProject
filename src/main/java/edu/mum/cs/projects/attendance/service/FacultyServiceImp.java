@@ -13,21 +13,21 @@ public class FacultyServiceImp implements FacultyService {
 
 	@Autowired
 	FacultyRepository facultyRepository;
-	
+
 	@Override
 	public List<Faculty> getAll() {
-		
+
 		return (List<Faculty>) facultyRepository.findAll();
 	}
 
 	@Override
 	public Faculty getFacultyById(Long id) {
-		
+
 		return facultyRepository.findById(id);
 	}
 
 	@Override
-	public void createFaculty(Faculty faculty) {		
+	public void createFaculty(Faculty faculty) {
 		facultyRepository.save(faculty);
 	}
 

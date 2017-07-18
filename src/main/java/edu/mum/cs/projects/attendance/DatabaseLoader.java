@@ -1,15 +1,17 @@
 package edu.mum.cs.projects.attendance;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import edu.mum.cs.projects.attendance.service.DatabaseLoaderService;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Loads databse from BaseData.xlsx spreadsheet</p>
+ * <p>
+ * Loads databse from BaseData.xlsx spreadsheet
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -17,12 +19,11 @@ import edu.mum.cs.projects.attendance.service.DatabaseLoaderService;
  * @since 2.0.0
  * 
  */
-@SpringBootApplication
+// @SpringBootApplication
 public class DatabaseLoader {
 
 	public static void main(String[] args) throws Exception {
 		ConfigurableApplicationContext context = SpringApplication.run(DatabaseLoader.class, args);
-		
 		DatabaseLoaderService service = context.getBean(DatabaseLoaderService.class);
 		service.loadDatabaseFromSpreadsheet();
 		service.loadScannedBarcodesToDatabase();

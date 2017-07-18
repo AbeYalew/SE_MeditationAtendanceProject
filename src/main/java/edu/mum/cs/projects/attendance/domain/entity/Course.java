@@ -10,9 +10,12 @@ import org.hibernate.annotations.Immutable;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.</p>
+ * <p>
+ * Domain entity. Simple POJO.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -22,34 +25,34 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
  */
 @Entity
 @Immutable
-@Table(name="Courses")
+@Table(name = "Courses")
 public class Course implements Identifiable<String> {
 	@Id
 	@Column(columnDefinition = "nvarchar(50)")
-    private String number;
+	private String number;
 
 	@Column(columnDefinition = "nvarchar(255)")
-    private String abbr;
-    
+	private String abbr;
+
 	@Column(columnDefinition = "nvarchar(255)")
-    private String name;
+	private String name;
 
 	@Column(columnDefinition = "nvarchar(4000)")
-    private String description;
+	private String description;
 
-    public Course() {}
+	public Course() {
+	}
 
 	public Course(String number) {
 		super();
 		this.number = number;
 	}
 
-
 	@Override
 	public String getId() {
 		return getNumber();
 	}
-	
+
 	public String getNumber() {
 		return number;
 	}
@@ -107,9 +110,9 @@ public class Course implements Identifiable<String> {
 		return true;
 	}
 
-    @Override
-    public String toString() {
-        return String.format("%s - %s", number, abbr);
-    }
+	@Override
+	public String toString() {
+		return String.format("%s - %s", number, abbr);
+	}
 
 }

@@ -8,9 +8,12 @@ import edu.mum.cs.projects.attendance.domain.entity.Session;
 import edu.mum.cs.projects.attendance.domain.entity.Student;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Aggregate structure that holds the results of student attendance.</p>
+ * <p>
+ * Aggregate structure that holds the results of student attendance.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -57,7 +60,7 @@ public class StudentAttendance {
 	public void setAttendance(List<Boolean> attendance) {
 		this.attendance = attendance;
 	}
-	
+
 	public List<Session> getSessions() {
 		return courseOffering.getBlock().getSessions();
 	}
@@ -65,7 +68,7 @@ public class StudentAttendance {
 	public long getMeditationCount() {
 		return attendance.stream().filter(a -> a).count();
 	}
-	
+
 	public long getNumberOfRequiredSessions() {
 		return courseOffering.getBlock().getRequiredSessions();
 	}
@@ -110,7 +113,7 @@ public class StudentAttendance {
 
 		sb.append(String.format("Total = %3d or ", presentCount));
 		int requiredSessions = attendance.size();
-		if(null != courseOffering) {
+		if (null != courseOffering) {
 			requiredSessions = courseOffering.getBlock().getRequiredSessions();
 		}
 		sb.append(String.format("%5.1f", (float) (100.0 * presentCount) / requiredSessions));

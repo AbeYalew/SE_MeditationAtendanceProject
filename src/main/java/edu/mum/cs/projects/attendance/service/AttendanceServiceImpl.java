@@ -57,7 +57,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private StudentService studentService;
 
 	@Autowired
-	BarcodeRecordRepository barcodeRecordRepository;	
+	BarcodeRecordRepository barcodeRecordRepository;
 
 	@Override
 	public void countAttendancePerDay() {
@@ -133,7 +133,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		AcademicBlock block = courseService
 				.getAcademicBlock(DateUtil.convertDateToString(courseOffering.getStartDate()));
 
-		if( block == null){
+		if (block == null) {
 			return null;
 		}
 		Date beginDate = DateUtil.convertLocalDateToDate(block.getBeginDate());

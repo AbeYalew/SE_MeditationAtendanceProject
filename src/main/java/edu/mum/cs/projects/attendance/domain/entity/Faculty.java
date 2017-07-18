@@ -9,9 +9,12 @@ import org.hibernate.annotations.Immutable;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.</p>
+ * <p>
+ * Domain entity. Simple POJO.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -22,15 +25,15 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
 @Entity
 @Immutable
 public class Faculty implements Identifiable<Long> {
-	
+
 	@Id
 	@Column(columnDefinition = "int")
 	private Long id;
-	
-	@Column(name="firstname", columnDefinition = "nvarchar(50)")
+
+	@Column(name = "firstname", columnDefinition = "nvarchar(50)")
 	private String firstName;
-	
-	@Column(name="lastname", columnDefinition = "nvarchar(50)")
+
+	@Column(name = "lastname", columnDefinition = "nvarchar(50)")
 	private String lastName;
 
 	public Long getId() {
@@ -86,5 +89,5 @@ public class Faculty implements Identifiable<Long> {
 	public String toString() {
 		return firstName + " " + lastName;
 	}
-	
+
 }

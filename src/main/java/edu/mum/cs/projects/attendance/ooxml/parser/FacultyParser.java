@@ -7,10 +7,13 @@ import org.apache.poi.ss.usermodel.Row;
 import edu.mum.cs.projects.attendance.domain.entity.Faculty;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Excel row parser/mapper. Converts an Excel row into an object.
- * Note: This file is tightly coupled with the structure of the input Excel sheet.</p>
+ * <p>
+ * Excel row parser/mapper. Converts an Excel row into an object. Note: This
+ * file is tightly coupled with the structure of the input Excel sheet.
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -20,15 +23,15 @@ import edu.mum.cs.projects.attendance.domain.entity.Faculty;
  * 
  */
 public class FacultyParser implements Function<Row, Faculty> {
-	
-    @Override
-    public Faculty apply(Row row) {
-    	Faculty faculty = new Faculty();
-    	
-    	faculty.setId((long)row.getCell(0).getNumericCellValue());
-    	faculty.setFirstName(row.getCell(1).getStringCellValue());
-    	faculty.setLastName(row.getCell(2).getStringCellValue());
 
-        return faculty;
-    }
+	@Override
+	public Faculty apply(Row row) {
+		Faculty faculty = new Faculty();
+
+		faculty.setId((long) row.getCell(0).getNumericCellValue());
+		faculty.setFirstName(row.getCell(1).getStringCellValue());
+		faculty.setLastName(row.getCell(2).getStringCellValue());
+
+		return faculty;
+	}
 }

@@ -4,9 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Run reports from here!</p>
+ * <p>
+ * Run reports from here!
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -16,9 +19,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class AttendanceReport {
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(AttendanceReport.class, args);
 	}
-	
+
 }
