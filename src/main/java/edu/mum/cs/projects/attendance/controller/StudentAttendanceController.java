@@ -33,13 +33,10 @@ import edu.mum.cs.projects.attendance.service.BarcodeService;
 import edu.mum.cs.projects.attendance.util.DateUtil;
 import edu.mum.cs.projects.attendance.util.IDNumberUtil;
 
-
-
-
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class StudentAttendanceController {
-	
+
 	@Autowired
 	CourseService courseService;
 
@@ -48,87 +45,102 @@ public class StudentAttendanceController {
 
 	@Autowired
 	StudentService studentService;
-	
-    @Autowired
-    EnrollmentService enrollmentService;
-    
 
-    @Autowired
-    BarcodeService barcodeService;
+	@Autowired
+	EnrollmentService enrollmentService;
 
-    @RequestMapping(value = "/my/courselist")
-    public String getStudentCourseList(String studentid, Model model,Authentication authentication) {	
-    	
-		model.addAttribute("enrolledCourses", enrollmentService.getEnrolledCoursesByStudentId(authentication.getName()));	
+	@Autowired
+	BarcodeService barcodeService;
+
+	@RequestMapping(value = "/my/courselist")
+	public String getStudentCourseList(String studentid, Model model, Authentication authentication) {
+
+		model.addAttribute("enrolledCourses",
+				enrollmentService.getEnrolledCoursesByStudentId(authentication.getName()));
 
 		return "studentCourseList";
-    }
+	}
 
-    @RequestMapping(value = "/my/attendance")
-    public String getStudentAttendanceforAcourse(String offeringid,String studentid, Model model) {
+	@RequestMapping(value = "/my/attendance")
+	public String getStudentAttendanceforAcourse(String offeringid, String studentid, Model model) {
 
-        return "studentAttendance";
-    }
-    
-    @RequestMapping(value = "/attendance/student/{cofferingid}", method = RequestMethod.GET)
-	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model,Authentication authentication) {
+		return "studentAttendance";
+	}
+
+	@RequestMapping(value = "/attendance/student/{cofferingid}", method = RequestMethod.GET)
+	public String getAttendanceRecordsStudent(@PathVariable("cofferingid") long cofferingid, Model model,
+			Authentication authentication) {
 
 		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
 
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
-		
+
 		String studentId = IDNumberUtil.convertToStudentId(Long.valueOf(authentication.getName()));
 
 		Student student = studentService.getStudentsById(studentId);
 
-		List<StudentAttendance> studentAttendance = attendanceService
-					.retrieveStudentAttendanceRecords(coffering);
-		
-		if(studentAttendance == null){
-			return "redirect:/student/Courselist?attendance=none";			
+		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
+
+		if (studentAttendance == null) {
+			return "redirect:/student/Courselist?attendance=none";
 		}
-		
-		
-		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student)).collect(Collectors.toList());
-		
+
+		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student))
+				.collect(Collectors.toList());
+
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
 
 		return "studentCourseOfferingAttendance";
 	}
-    
-    @RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
-    public String getBarcodeRecordsListByDate(@RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
-    	LocalDate localDate = LocalDate.parse(recordDate);
-    	String redirectUrl="/courseOffering/getrecord/"+offeringId;
 
-    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-    	Date date=new Date();
+	@RequestMapping(value = "/attendance/faculty/{cofferingid}", method = RequestMethod.GET)
+	public String getAttendanceRecordsFaculty(@PathVariable("cofferingid") long cofferingid, Model model,
+			Authentication authentication) {
+
+		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
+
+		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
+		coffering.setBlock(block);
+
+		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
+
+		System.out.println("attendance list" + studentAttendance);
+		model.addAttribute("studentAttendance", studentAttendance);
+		model.addAttribute("block", block);
+
+		return "facultyCourseOfferingAttendance";
+	}
+
+	@RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
+	public String getBarcodeRecordsListByDate(@RequestParam("offeringId") String offeringId,
+			@RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
+		LocalDate localDate = LocalDate.parse(recordDate);
+		String redirectUrl = "/courseOffering/getrecord/" + offeringId;
+
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		Date date = new Date();
 		try {
 			date = format.parse(recordDate);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<BarcodeRecord> barcodeRecords= barcodeService.getBarcodeRecordsListByDateAndStudentID(date, studentId);
-    	if(barcodeRecords.size()==0){
-    		System.out.println("----------------------------barcode recorde created");
-    		
-    		
-    		  barcodeService.addBarcodeRecordList(localDate, studentId);
-    	}else{
-    		System.out.println("---------------------------- bardcode deleted");
-    		  System.out.println(barcodeRecords);
-    		  barcodeService.deleteBarcodeRecordByBarcodeID(barcodeRecords.get(0).getId());
-    	}
-    	/*
-		model.addAttribute("barcodeRecords", barcodeRecords);
-*/
-		return "redirect:" + redirectUrl;
-    }
+		List<BarcodeRecord> barcodeRecords = barcodeService.getBarcodeRecordsListByDateAndStudentID(date, studentId);
+		if (barcodeRecords.size() == 0) {
+			System.out.println("----------------------------barcode recorde created");
 
+			barcodeService.addBarcodeRecordList(localDate, studentId);
+		} else {
+			System.out.println("---------------------------- bardcode deleted");
+			System.out.println(barcodeRecords);
+			barcodeService.deleteBarcodeRecordByBarcodeID(barcodeRecords.get(0).getId());
+		}
+		/*
+		 * model.addAttribute("barcodeRecords", barcodeRecords);
+		 */
+		return "redirect:" + redirectUrl;
+	}
 
 }
-
-
