@@ -1,11 +1,12 @@
 package edu.mum.cs.projects.attendance.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class StringUtilTest {
-	
+
 	private static final String BAD_RETURN = "Method did not produce the expected result";
 
 	@Test

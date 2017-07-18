@@ -14,11 +14,14 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
 import edu.mum.cs.projects.attendance.util.DateUtil;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.<br/>
- * Represents a timeslot. Each day can be divided into multiple timslots.
- * for example there could be morning meditation (AM) and afternoon meditation (PM).</p>
+ * <p>
+ * Domain entity. Simple POJO.<br/>
+ * Represents a timeslot. Each day can be divided into multiple timslots. for
+ * example there could be morning meditation (AM) and afternoon meditation (PM).
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -28,71 +31,71 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
  * 
  */
 @Entity
-@Table(name="Attendance_Timeslot")
+@Table(name = "Attendance_Timeslot")
 public class Timeslot implements Identifiable<String> {
 
 	@Id
 	private String id;
 
-	@Column(nullable=false)
-    private String title;
+	@Column(nullable = false)
+	private String title;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIME)
-    private Date beginTime;
+	private Date beginTime;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIME)
-    private Date endTime;
+	private Date endTime;
 
-    public Timeslot() {
-    }
+	public Timeslot() {
+	}
 
-    public Timeslot(String id) {
+	public Timeslot(String id) {
 		super();
 		this.id = id;
 	}
 
 	public Timeslot(String id, String title, LocalTime beginTime, LocalTime endTime) {
-        this.id = id;
-        this.title = title;
-        this.beginTime = DateUtil.convertLocalTimeToDate(beginTime);
-        this.endTime = DateUtil.convertLocalTimeToDate(endTime);
-    }
+		this.id = id;
+		this.title = title;
+		this.beginTime = DateUtil.convertLocalTimeToDate(beginTime);
+		this.endTime = DateUtil.convertLocalTimeToDate(endTime);
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public LocalTime getBeginTime() {
-        return DateUtil.convertDateToLocalTime(beginTime);
-    }
+	public LocalTime getBeginTime() {
+		return DateUtil.convertDateToLocalTime(beginTime);
+	}
 
-    public void setBeginTime(LocalTime beginTime) {
-        this.beginTime = DateUtil.convertLocalTimeToDate(beginTime);
-    }
+	public void setBeginTime(LocalTime beginTime) {
+		this.beginTime = DateUtil.convertLocalTimeToDate(beginTime);
+	}
 
-    public LocalTime getEndTime() {
-        return DateUtil.convertDateToLocalTime(endTime);
-    }
+	public LocalTime getEndTime() {
+		return DateUtil.convertDateToLocalTime(endTime);
+	}
 
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = DateUtil.convertLocalTimeToDate(endTime);
-    }
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = DateUtil.convertLocalTimeToDate(endTime);
+	}
 
-    @Override
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -119,7 +122,7 @@ public class Timeslot implements Identifiable<String> {
 
 	@Override
 	public String toString() {
-		return "Timeslot [id=" + id + ", title=" + title + ", beginTime=" + getBeginTime()
-				+ ", endTime=" + getEndTime() + "]";
+		return "Timeslot [id=" + id + ", title=" + title + ", beginTime=" + getBeginTime() + ", endTime=" + getEndTime()
+				+ "]";
 	}
 }

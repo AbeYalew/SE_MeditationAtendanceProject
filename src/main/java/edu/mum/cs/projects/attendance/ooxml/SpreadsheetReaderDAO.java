@@ -26,10 +26,14 @@ import edu.mum.cs.projects.attendance.ooxml.parser.StudentParser;
 import edu.mum.cs.projects.attendance.ooxml.parser.TimeslotParser;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Utility that loads data from Excel file "BaseData.xlsx". Acts as the main dataaccess layer. 
- * All lists are singleton so that data would only be read once from spreadsheet.</p>
+ * <p>
+ * Utility that loads data from Excel file "BaseData.xlsx". Acts as the main
+ * dataaccess layer. All lists are singleton so that data would only be read
+ * once from spreadsheet.
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -39,7 +43,7 @@ import edu.mum.cs.projects.attendance.ooxml.parser.TimeslotParser;
  * 
  */
 public class SpreadsheetReaderDAO {
-	
+
 	private static final String SHEET_BLOCK = "AcademicBlock";
 	private static final String SHEET_LOCATION = "Location";
 	private static final String SHEET_TIMESLOT = "Timeslot";
@@ -81,8 +85,8 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Enrollment> loadEnrollmentList() {
 		if (null == enrollmentList) {
 			System.out.println("Loading list of enrollments...");
-			enrollmentList = ExcelReader.<Long, Enrollment>
-				getListEntities(SHEET_ENROLLMENT, enrollmentMap, new EnrollmentParser());
+			enrollmentList = ExcelReader.<Long, Enrollment>getListEntities(SHEET_ENROLLMENT, enrollmentMap,
+					new EnrollmentParser());
 			loadSessionList();
 		}
 		return enrollmentList;
@@ -96,8 +100,7 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Faculty> loadFacultyList() {
 		if (null == facultyList) {
 			System.out.println("Loading list of faculty...");
-			facultyList = ExcelReader.<Long, Faculty>
-				getListEntities(SHEET_FACULTY, facultyMap, new FacultyParser());
+			facultyList = ExcelReader.<Long, Faculty>getListEntities(SHEET_FACULTY, facultyMap, new FacultyParser());
 			loadSessionList();
 		}
 		return facultyList;
@@ -111,8 +114,8 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<AcademicBlock> loadAcademicBlockList() {
 		if (null == academicBlockList) {
 			System.out.println("Loading list of academic blocks...");
-			academicBlockList = ExcelReader.<String, AcademicBlock>
-				getListEntities(SHEET_BLOCK, academicBlockMap, new AcademicBlockParser());
+			academicBlockList = ExcelReader.<String, AcademicBlock>getListEntities(SHEET_BLOCK, academicBlockMap,
+					new AcademicBlockParser());
 			loadSessionList();
 		}
 		return academicBlockList;
@@ -126,12 +129,12 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Location> loadLocationList() {
 		if (null == locationList) {
 			System.out.println("Loading list of course locations...");
-			locationList = ExcelReader.<String, Location>
-				getListEntities(SHEET_LOCATION, locationMap, new LocationParser());
+			locationList = ExcelReader.<String, Location>getListEntities(SHEET_LOCATION, locationMap,
+					new LocationParser());
 		}
 		return locationList;
 	}
-	
+
 	public static Timeslot findTimeslot(String id) {
 		loadTimeslotList();
 		return timeslotMap.get(id);
@@ -140,8 +143,8 @@ public class SpreadsheetReaderDAO {
 	public static synchronized List<Timeslot> loadTimeslotList() {
 		if (null == timeslotList) {
 			System.out.println("Loading list of course timeslots...");
-			timeslotList = ExcelReader.<String, Timeslot>
-				getListEntities(SHEET_TIMESLOT, timeslotMap, new TimeslotParser());
+			timeslotList = ExcelReader.<String, Timeslot>getListEntities(SHEET_TIMESLOT, timeslotMap,
+					new TimeslotParser());
 		}
 		return timeslotList;
 	}
@@ -154,8 +157,7 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Session> loadSessionList() {
 		if (null == sessionList) {
 			System.out.println("Loading list of sessions...");
-			sessionList = ExcelReader.<Long, Session>
-				getListEntities(SHEET_SESSION, sessionMap, new SessionParser());
+			sessionList = ExcelReader.<Long, Session>getListEntities(SHEET_SESSION, sessionMap, new SessionParser());
 		}
 		return sessionList;
 	}
@@ -168,8 +170,7 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Barcode> loadBarcodeList() {
 		if (null == barcodeList) {
 			System.out.println("Loading list of barcodes...");
-			barcodeList = ExcelReader.<Long, Barcode>
-				getListEntities(SHEET_BARCODE, barcodeMap, new BarcodeParser());
+			barcodeList = ExcelReader.<Long, Barcode>getListEntities(SHEET_BARCODE, barcodeMap, new BarcodeParser());
 		}
 		return barcodeList;
 	}
@@ -182,8 +183,7 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Student> loadStudentList() {
 		if (null == studentList) {
 			System.out.println("Loading list of barcodes...");
-			studentList = ExcelReader.<String, Student>
-					getListEntities(SHEET_STUDENT, studentMap, new StudentParser());
+			studentList = ExcelReader.<String, Student>getListEntities(SHEET_STUDENT, studentMap, new StudentParser());
 		}
 		return studentList;
 	}
@@ -196,8 +196,7 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<Course> loadCourseList() {
 		if (null == courseList) {
 			System.out.println("Loading list of barcodes...");
-			courseList = ExcelReader.<String, Course>
-					getListEntities(SHEET_COURSE, courseMap, new CourseParser());
+			courseList = ExcelReader.<String, Course>getListEntities(SHEET_COURSE, courseMap, new CourseParser());
 		}
 		return courseList;
 	}
@@ -210,10 +209,10 @@ public class SpreadsheetReaderDAO {
 	public synchronized static List<CourseOffering> loadOfferingList() {
 		if (null == offeringList) {
 			System.out.println("Loading list of barcodes...");
-			offeringList = ExcelReader.<Long, CourseOffering>
-					getListEntities(SHEET_OFFERING, offeringMap, new CourseOfferingParser());
+			offeringList = ExcelReader.<Long, CourseOffering>getListEntities(SHEET_OFFERING, offeringMap,
+					new CourseOfferingParser());
 		}
 		return offeringList;
 	}
-	
+
 }

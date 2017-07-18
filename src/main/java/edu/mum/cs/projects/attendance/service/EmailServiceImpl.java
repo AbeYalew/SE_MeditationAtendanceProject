@@ -26,12 +26,12 @@ import edu.mum.cs.projects.attendance.util.FileUtil;
  */
 @Service
 public class EmailServiceImpl implements EmailService {
-	
+
 	@Override
 	public void sendEmail(Email email) {
 		System.out.println("Sending email - " + email.toString());
 		System.out.println(email.getBody());
-		
+
 	}
 
 	@Override

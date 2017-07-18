@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import edu.mum.cs.projects.attendance.repository.UsersRepository;
- 
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -25,19 +25,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
 	}
 
-     
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-       
-      http.authorizeRequests()
-      .antMatchers("/welcome").access("hasRole('FACULTY') or hasRole('STAFF') or hasRole('STUDENT') or hasRole('ADMIN')")
-       .and().csrf().disable().formLogin().loginPage("/login")
-       .usernameParameter("username").passwordParameter("password")
-       .defaultSuccessUrl("/welcome")
-        .and().exceptionHandling().accessDeniedPage("/Access_Denied");
-    }
-    
-    private PasswordEncoder getPasswordEncoder() {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+
+		http.authorizeRequests().antMatchers("/welcome")
+				.access("hasRole('FACULTY') or hasRole('STAFF') or hasRole('STUDENT') or hasRole('ADMIN')").and().csrf()
+				.disable().formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
+				.defaultSuccessUrl("/welcome").and().exceptionHandling().accessDeniedPage("/Access_Denied");
+	}
+
+	private PasswordEncoder getPasswordEncoder() {
 		return new PasswordEncoder() {
 			@Override
 			public String encode(CharSequence charSequence) {
@@ -49,6 +46,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				return true;
 			}
 		};
-    }
+	}
 }
- 

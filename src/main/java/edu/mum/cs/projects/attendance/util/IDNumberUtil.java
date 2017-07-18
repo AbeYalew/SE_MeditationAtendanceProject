@@ -30,15 +30,16 @@ public class IDNumberUtil {
 
 	public static String convertToStudentId(String id) {
 		// final output format 000-98-0201
-		
+
 		// does not handle other strings
-		
+
 		// check if its not already in the required format and return
 		if (!id.matches("\\d+")) {
 			return id;
 		}
 
-		// a copy of the id is initialized, and the overloaded long method is called
+		// a copy of the id is initialized, and the overloaded long method is
+		// called
 		long idCopy = Long.parseLong(id);
 		return convertToStudentId(idCopy);
 	}

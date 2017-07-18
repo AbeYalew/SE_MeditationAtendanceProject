@@ -9,9 +9,13 @@ import org.springframework.stereotype.Repository;
 import edu.mum.cs.projects.attendance.domain.entity.BarcodeRecord;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>This is a spring-data repository class responsible for CRUD operations pertaining to "BarcodeRecord"</p>
+ * <p>
+ * This is a spring-data repository class responsible for CRUD operations
+ * pertaining to "BarcodeRecord"
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -21,12 +25,14 @@ import edu.mum.cs.projects.attendance.domain.entity.BarcodeRecord;
  */
 @Repository
 public interface BarcodeRecordRepository extends CrudRepository<BarcodeRecord, Integer> {
-	
+
 	List<BarcodeRecord> findByDateBetween(Date beginDate, Date endDate);
-	//fire group
+
+	// fire group
 	List<BarcodeRecord> findByDate(Date record);
-	//fire group
+
+	// fire group
 	void deleteById(long barcodeid);
-	/*List<BarcodeRecord> findByBarstudentId(String barcode);*/
-	
+	/* List<BarcodeRecord> findByBarstudentId(String barcode); */
+
 }

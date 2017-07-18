@@ -20,9 +20,12 @@ import org.hibernate.annotations.Immutable;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO.</p>
+ * <p>
+ * Domain entity. Simple POJO.
+ * </p>
  *
  * @author Payman Salek
  * 
@@ -32,41 +35,41 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
  */
 @Entity
 @Immutable
-@Table(name="Offered")
+@Table(name = "Offered")
 public class CourseOffering implements Identifiable<Long> {
-	
+
 	@Id
 	@Column(columnDefinition = "int")
-    private Long id;
+	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="coursenumber", columnDefinition = "nvarchar(50)")
+	@JoinColumn(name = "coursenumber", columnDefinition = "nvarchar(50)")
 	private Course course;
 
 	@Column(columnDefinition = "nvarchar(50)")
 	private String period;
-	
-	@Column(name="startdate", columnDefinition = "datetime")
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
-	
-	@OneToMany(mappedBy="offering", fetch=FetchType.EAGER)	
+
+	@Column(name = "startdate", columnDefinition = "datetime")
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+
+	@OneToMany(mappedBy = "offering", fetch = FetchType.EAGER)
 	private List<Enrollment> enrollments;
-	
+
 	@Column
 	private int capacity;
-	
+
 	@Column
 	private int enrolled;
-	
+
 	@Column
-	private boolean active;	
-	
+	private boolean active;
+
 	@Column
 	private boolean de;
-	
+
 	@ManyToOne
-	@JoinColumn(name="faculty")
+	@JoinColumn(name = "faculty")
 	private Faculty faculty;
 
 	@Transient

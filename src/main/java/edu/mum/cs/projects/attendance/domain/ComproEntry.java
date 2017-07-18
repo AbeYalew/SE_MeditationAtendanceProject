@@ -8,24 +8,27 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
 public class ComproEntry {
 	private String name;
 	private LocalDate date;
-	
+
 	public ComproEntry() {
 	}
-	
+
 	public ComproEntry(CourseOffering offering) {
 		name = offering.getPeriod();
 		date = DateUtil.convertDateToLocalDate(offering.getStartDate());
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}

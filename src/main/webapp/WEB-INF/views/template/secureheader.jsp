@@ -21,7 +21,7 @@
      <link href="<c:url value="/static/css/custom.css"/>"  rel="stylesheet">
     <link href="<c:url value="/static/css/jumbotron.css"/>"  rel="stylesheet">
     <link href="<c:url value="/static/css/panels.css"/>"  rel="stylesheet">
-
+    <script src="<c:url value="/static/js/user.js"/>"></script>
 </head>
 
 <body>

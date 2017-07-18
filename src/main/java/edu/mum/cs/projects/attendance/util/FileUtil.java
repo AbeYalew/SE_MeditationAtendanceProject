@@ -14,29 +14,30 @@ import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
 
 public class FileUtil {
 	public static final String ROOT_DIRECTORY = "src/main/resources/";
-	
+
 	private static Map<String, OutputStream> outputStreamMap = new HashMap<>();
-	
+
 	public static String createReportDirectory(CourseOffering courseOffering) {
 		String directory = getReportDirectoryPath(courseOffering);
-		
+
 		File file = new File(directory);
 		file.mkdirs();
-		
+
 		return directory;
 	}
 
 	public static String getReportDirectoryPath(CourseOffering courseOffering) {
 		int year = courseOffering.getBlock().getBeginDate().getYear();
-		String directory = ROOT_DIRECTORY + "reports/" + year + "/" + courseOffering.getBlock().getId().replaceAll(String.valueOf(year), "").substring(1) + "/";
+		String directory = ROOT_DIRECTORY + "reports/" + year + "/"
+				+ courseOffering.getBlock().getId().replaceAll(String.valueOf(year), "").substring(1) + "/";
 
 		return directory;
 	}
-	
+
 	public static String getTemplatesDirectoryPath() {
 		return ROOT_DIRECTORY + "templates/";
 	}
-	
+
 	public static OutputStream createOutputStream(String fileName) {
 		FileOutputStream outputStream = null;
 		try {
@@ -46,16 +47,16 @@ public class FileUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return outputStream;
 	}
-	
+
 	public static void closeFile(String fileName) {
 		OutputStream outputStream = outputStreamMap.get(fileName);
-		if(null == outputStream) {
+		if (null == outputStream) {
 			return;
 		}
-		
+
 		try {
 			outputStream.close();
 		} catch (IOException e) {
@@ -66,10 +67,10 @@ public class FileUtil {
 
 	public static void writeToFile(String fileName, String data) {
 		OutputStream outputStream = outputStreamMap.get(fileName);
-		if(null == outputStream) {
+		if (null == outputStream) {
 			outputStream = createOutputStream(fileName);
 		}
-		
+
 		PrintWriter out = new PrintWriter(outputStream);
 		out.println(data);
 		out.flush();
@@ -81,7 +82,7 @@ public class FileUtil {
 		String result = "";
 		try {
 			scanner = new Scanner(new File(getTemplatesDirectoryPath() + fileName));
-			scanner.useDelimiter("\\Z"); 
+			scanner.useDelimiter("\\Z");
 			result = scanner.next();
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -89,10 +90,9 @@ public class FileUtil {
 			e.printStackTrace();
 		}
 
-		
 		return result;
 	}
-	
+
 	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println(readFile("email_body_part1.txt"));
 	}

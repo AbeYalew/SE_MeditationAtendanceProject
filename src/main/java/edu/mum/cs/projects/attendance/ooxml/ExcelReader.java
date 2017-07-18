@@ -15,9 +15,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import edu.mum.cs.projects.attendance.domain.Identifiable;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Utility that loads data from Excel file: {@value #FILE_LOCATION}</p>
+ * <p>
+ * Utility that loads data from Excel file: {@value #FILE_LOCATION}
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -27,11 +30,11 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
  * 
  */
 public class ExcelReader {
-	
+
 	public static final String FILE_LOCATION = "src/main/resources/Database.xlsx";
 
 	private static Workbook workbook;
-	
+
 	private static Workbook getWorkbook() {
 		if (workbook == null) {
 			try {
@@ -52,8 +55,9 @@ public class ExcelReader {
 		}
 	}
 
-	public static <K, V extends Identifiable<K>> List<V> getListEntities(String sheetName, Map<K, V> map, Function<Row, V> mapper) {
-		
+	public static <K, V extends Identifiable<K>> List<V> getListEntities(String sheetName, Map<K, V> map,
+			Function<Row, V> mapper) {
+
 		Sheet sheet = getWorkbook().getSheet(sheetName);
 
 		List<V> list = new ArrayList<V>();
@@ -65,10 +69,10 @@ public class ExcelReader {
 			list.add(value);
 			map.put(value.getId(), value);
 		}
-		
+
 		closeWorkbook();
 
 		return list;
 	}
-	
+
 }

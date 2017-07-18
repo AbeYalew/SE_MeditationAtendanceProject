@@ -8,6 +8,6 @@ import edu.mum.cs.projects.attendance.domain.StudentAttendance;
 public interface EmailService {
 
 	void sendEmail(Email email);
-	
+
 	void emailAttendanceReportToStudents(List<StudentAttendance> studentAttendanceList);
 }

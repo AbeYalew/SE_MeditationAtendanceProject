@@ -17,9 +17,13 @@ import edu.mum.cs.projects.attendance.domain.Identifiable;
 import edu.mum.cs.projects.attendance.util.DateUtil;
 
 /**
- * <h1>Maharishi University of Management<br/>Computer Science Department</h1>
+ * <h1>Maharishi University of Management<br/>
+ * Computer Science Department</h1>
  * 
- * <p>Domain entity. Simple POJO. Represents a scanned barcode record (or one attendance).</p>
+ * <p>
+ * Domain entity. Simple POJO. Represents a scanned barcode record (or one
+ * attendance).
+ * </p>
  *
  * @author Hong An Nguyen
  * @author Payman Salek
@@ -29,29 +33,30 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
  * 
  */
 @Entity
-@Table(name="Attendance_Record")
-//@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"barcode" , "date", "timeslot", "location"})})
+@Table(name = "Attendance_Record")
+// @Table(uniqueConstraints={@UniqueConstraint(columnNames = {"barcode" ,
+// "date", "timeslot", "location"})})
 public class BarcodeRecord implements Identifiable<Long> {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Column(nullable=false, length=13)
+
+	@Column(nullable = false, length = 13)
 	private String barcode;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date date;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIME)
 	private Date time;
-	
-	@ManyToOne(optional=false)
+
+	@ManyToOne(optional = false)
 	private Timeslot timeslot;
-	
-	@ManyToOne(optional=false)
+
+	@ManyToOne(optional = false)
 	private Location location;
 
 	public BarcodeRecord() {
@@ -65,7 +70,7 @@ public class BarcodeRecord implements Identifiable<Long> {
 		setTime(time);
 		this.timeslot = timeslot;
 		this.location = location;
-		
+
 		this.toString();
 	}
 
@@ -84,7 +89,7 @@ public class BarcodeRecord implements Identifiable<Long> {
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
-	
+
 	public LocalDate getDate() {
 		return DateUtil.convertDateToLocalDate(date);
 	}
@@ -141,8 +146,8 @@ public class BarcodeRecord implements Identifiable<Long> {
 
 	@Override
 	public String toString() {
-		return "BarcodeRecord [id=" + id + ", barcode=" + barcode + ", date=" + getDate() + ", time=" + getTime() + ", timeslot="
-				+ timeslot.getId() + ", location=" + location.getId() + "]";
+		return "BarcodeRecord [id=" + id + ", barcode=" + barcode + ", date=" + getDate() + ", time=" + getTime()
+				+ ", timeslot=" + timeslot.getId() + ", location=" + location.getId() + "]";
 	}
 
 }

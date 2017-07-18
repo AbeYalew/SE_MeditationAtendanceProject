@@ -39,34 +39,34 @@ import edu.mum.cs.projects.attendance.util.DateUtil;
  * 
  */
 @Entity
-@Table(name="Attendance_Block")
+@Table(name = "Attendance_Block")
 @Immutable
 public class AcademicBlock implements Identifiable<String> {
 
 	private static final Comparator<Session> BY_DATE = (s1, s2) -> s1.getDate().compareTo(s2.getDate());
 
 	@Id
-	@Column(length=12)
+	@Column(length = 12)
 	private String id; // User-defined, "usually" in the form of 2017-05A-05D
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String name;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date beginDate;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String semester;
 
-	@OneToMany(mappedBy="block", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "block", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Session> sessions = new ArrayList<>();
 
-	@Column(nullable=false, name="required")
+	@Column(nullable = false, name = "required")
 	private int requiredSessions;
 
 	public int getRequiredSessions() {
@@ -76,7 +76,7 @@ public class AcademicBlock implements Identifiable<String> {
 	public void setRequiredSessions(int requiredSessions) {
 		this.requiredSessions = requiredSessions;
 	}
-	
+
 	public void addSession(Session session) {
 		sessions.add(session);
 	}
@@ -152,8 +152,8 @@ public class AcademicBlock implements Identifiable<String> {
 
 	@Override
 	public String toString() {
-		return "AcademicBlock [id=" + id + ", name=" + name + ", beginDate=" + getBeginDate() + ", endDate=" + getEndDate()
-				+ ", semester=" + semester + ", requiredSessions=" + requiredSessions + "]";
+		return "AcademicBlock [id=" + id + ", name=" + name + ", beginDate=" + getBeginDate() + ", endDate="
+				+ getEndDate() + ", semester=" + semester + ", requiredSessions=" + requiredSessions + "]";
 	}
 
 }
