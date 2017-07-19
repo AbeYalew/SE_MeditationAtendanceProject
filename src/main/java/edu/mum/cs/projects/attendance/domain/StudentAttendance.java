@@ -75,8 +75,9 @@ public class StudentAttendance {
 
 	public double getMeditaionPercentage() {
 		double percentage = 100.0 * getMeditationCount() / courseOffering.getBlock().getRequiredSessions();
-		
-		return Double.parseDouble(String.format("%.1f", percentage)) ;
+		percentage = (int) percentage * 10;
+		percentage = percentage / 10;
+		return percentage ;
 	}
 
 	public double getMeditationExtraGrade() {
