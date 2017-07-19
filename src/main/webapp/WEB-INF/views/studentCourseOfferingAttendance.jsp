@@ -32,6 +32,11 @@
 						<button type="submit" class="btn btn-primary">Back To
 							List</button>
 					</form>
+					<form action="/attendance/studentPDFPrint/${studentAttendance.get(0).student.studentId}/${studentAttendance.get(0).courseOffering.id}"
+					 method="GET">
+
+					<button type="submit" class="btn btn-primary">Print PDF Report</button>
+				</form>
 				</td>
 
 			</tr>
