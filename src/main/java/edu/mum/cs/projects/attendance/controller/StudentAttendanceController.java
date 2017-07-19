@@ -31,7 +31,6 @@ import edu.mum.cs.projects.attendance.service.CourseService;
 import edu.mum.cs.projects.attendance.service.EnrollmentService;
 import edu.mum.cs.projects.attendance.service.StudentService;
 import edu.mum.cs.projects.attendance.util.DateUtil;
-import edu.mum.cs.projects.attendance.util.IDNumberUtil;
 
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -49,10 +48,8 @@ public class StudentAttendanceController {
 	@Autowired
 	EnrollmentService enrollmentService;
 
-
 	@Autowired
 	BarcodeService barcodeService;
-
 
 	@RequestMapping(value = "/my/courselist")
 	public String getStudentCourseList(String studentid, Model model, Authentication authentication) {
@@ -66,50 +63,49 @@ public class StudentAttendanceController {
 	@RequestMapping(value = "/my/attendance")
 	public String getStudentAttendanceforAcourse(String offeringid, String studentid, Model model) {
 
-
 		return "studentAttendance";
 	}
 
-
 	@RequestMapping(value = "/attendance/student/{studentId}/{cofferingid}", method = RequestMethod.GET)
-	public String getAttendanceRecordsStudent(@PathVariable("studentId") String studentId, @PathVariable("cofferingid") long cofferingid, Model model,Authentication authentication) {
+	public String getAttendanceRecordsStudent(@PathVariable("studentId") String studentId,
+			@PathVariable("cofferingid") long cofferingid, Model model, Authentication authentication) {
 
 		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
 
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
-		
-		Student student = studentService.getStudentsById(studentId);
-		
 
-		List<StudentAttendance> studentAttendance = attendanceService
-					.retrieveStudentAttendanceRecords(coffering);
-		
-		if(studentAttendance == null){
-			return "redirect:/student/Courselist?attendance=none";			
+		Student student = studentService.getStudentsById(studentId);
+
+		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
+
+		if (studentAttendance == null) {
+			return "redirect:/student/Courselist?attendance=none";
 		}
-		
-		
-		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student)).collect(Collectors.toList());
-		
+
+		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student))
+				.collect(Collectors.toList());
+
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
 
 		return "studentCourseOfferingAttendance";
 	}
 
-    @RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
-    public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType, @RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate, @RequestParam("studentId") String studentId, Model model) {
-    	LocalDate localDate = LocalDate.parse(recordDate);
-    	String redirectUrl;
-    	if(atendanceType.equals("one")){
-    		redirectUrl="/attendance/student/"+studentId+"/"+offeringId;
-    	}else{redirectUrl="/courseOffering/getrecord/"+offeringId;}
-    	
+	@RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
+	public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType,
+			@RequestParam("offeringId") String offeringId, @RequestParam("recordDate") String recordDate,
+			@RequestParam("studentId") String studentId, Model model) {
+		LocalDate localDate = LocalDate.parse(recordDate);
+		String redirectUrl;
+		if (atendanceType.equals("one")) {
+			redirectUrl = "/attendance/student/" + studentId + "/" + offeringId;
+		} else {
+			redirectUrl = "/courseOffering/getrecord/" + offeringId;
+		}
 
-    	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-    	Date date=new Date();
-
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		Date date = new Date();
 
 		try {
 			date = format.parse(recordDate);

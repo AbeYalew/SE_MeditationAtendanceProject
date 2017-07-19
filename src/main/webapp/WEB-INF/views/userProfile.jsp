@@ -39,13 +39,14 @@
 					</tr>
 					<c:if test="${user.roles.role == 'STUDENT'}">
 					<tr>
-						<td>Details: <a href="../user/getStudent/${user.studentId}/${user.name}">Details:</a>
+						<td><a href="../../user/editStudent/${user.studentId}/${user.name}">Details:</a>
 						</td>
 					</tr>
 					</c:if>
 					<c:if test="${user.roles.role == 'FACULTY'}">
 					<tr>
-						<td>Details: <a href="../user/getFaculty/${user.facultyId}/${user.name}/">Details:</a>
+						<td>
+						<a href="../../user/editFaculty//${user.facultyId}/${user.name}"> edit</a> 
 						</td>
 					</tr>
 					</c:if>
@@ -54,9 +55,8 @@
 			</div>
 		</div>
 	</fieldset>
-	<div class="clearfix"></div>
-	<a href="../matchs"> edit</a> |
-	<a href="../stadiums"> Home</a>
+	<div class="clearfix"></div>	
+	<a href="/student/find"> Home</a>
 	</div>
 </div>
 
