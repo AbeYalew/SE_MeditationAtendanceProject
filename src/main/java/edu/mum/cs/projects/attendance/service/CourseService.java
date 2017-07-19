@@ -6,6 +6,7 @@ import edu.mum.cs.projects.attendance.domain.ComproEntry;
 import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
 import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
 import edu.mum.cs.projects.attendance.domain.entity.Enrollment;
+import edu.mum.cs.projects.attendance.domain.entity.Faculty;
 
 /**
  * <h1>Maharishi University of Management<br/>
@@ -35,5 +36,6 @@ public interface CourseService {
 
 	// added
 	List<AcademicBlock> getAllAcademicBlock();
+	List<CourseOffering> getCourseOfferingsPastSixMonths(Long facultyId);
 
 }

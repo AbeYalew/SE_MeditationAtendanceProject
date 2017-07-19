@@ -14,6 +14,7 @@ import edu.mum.cs.projects.attendance.domain.entity.Faculty;
 import edu.mum.cs.projects.attendance.domain.entity.Users;
 import edu.mum.cs.projects.attendance.repository.CourseOfferingRepository;
 import edu.mum.cs.projects.attendance.repository.FacultyRepository;
+import edu.mum.cs.projects.attendance.service.CourseService;
 import edu.mum.cs.projects.attendance.service.EnrollmentService;
 
 @Controller
@@ -22,7 +23,7 @@ public class FacultyController {
 	EnrollmentService enrollmentService;
 
 	@Autowired
-	CourseOfferingRepository courseOfferingRepository;
+	CourseService courseService;
 
 	@Autowired
 	FacultyRepository facultyRepository;
@@ -33,8 +34,9 @@ public class FacultyController {
 		System.out.println(user);
 		Long facultyId = user.getFacultyId();
 
-		Faculty faculty = facultyRepository.findById(facultyId);
-		List<CourseOffering> courseOfferingList = courseOfferingRepository.findByFaculty(faculty);
+		
+		
+		List<CourseOffering> courseOfferingList = courseService.getCourseOfferingsPastSixMonths(facultyId);
 
 		model.addAttribute("courseOfferingList", courseOfferingList);
 		return "facultyCourseList";
