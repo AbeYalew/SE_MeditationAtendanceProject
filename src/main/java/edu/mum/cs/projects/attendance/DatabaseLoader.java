@@ -1,6 +1,7 @@
 package edu.mum.cs.projects.attendance;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import edu.mum.cs.projects.attendance.service.DatabaseLoaderService;
@@ -20,7 +21,7 @@ import edu.mum.cs.projects.attendance.service.UserService;
  * @since 2.0.0
  * 
  */
-// @SpringBootApplication
+@SpringBootApplication
 public class DatabaseLoader {
 
 	public static void main(String[] args) throws Exception {
