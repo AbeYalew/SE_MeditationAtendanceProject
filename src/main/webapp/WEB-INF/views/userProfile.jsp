@@ -13,10 +13,12 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div class="container">
 
-
-	<fieldset class="col-md-4">
+<div class="col-md-offset-1 col-lg-6"
+			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
+	<fieldset class="col-md-6" >
 		<legend>
 			<span class="text-info">${user.roles.role}</span> <span
 				class="text-primary">User </span>
@@ -56,7 +58,7 @@
 	<div class="clearfix"></div>	
 	<a href="/student/find"> Home</a>
 	</div>
-
+</div>
 
 </body>
 

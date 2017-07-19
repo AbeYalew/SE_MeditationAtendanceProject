@@ -4,30 +4,54 @@
 
 
     <!-- Example row of columns -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">User Welcome Page</div>
-        <div class="panel-body">
-            <h3>Welcome!!</h3>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p>In this Application </p>
-            <p>You Can manage Meditation Record,</p>
-            <p>List of blocks</p>
-            <p>List of Course Offerings..</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p>We are working for thre better teaching learning process...</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+    <div class="" >
+      
+            <h3>Welcome ${username} !!!</h3>
+           
+            <div class="row" style="padding-top: 20px;">
+		<div class="col-md-offset-1 col-md-4 "
+			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
+			<h1>Fire TimeSheet</h1>
+			<p>This is a template for a simple marketing or informational.</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="#" role="button">Learn
+					more &raquo;</a>
+			</p>
+		</div>
 
 
-        </div>
+		<div class="col-md-offset-1 col-md-4 "
+			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
+			<h2>Track Your Attendance</h2>
+			<p>Donec id elit non mi porta gravida at eget metus.</p>
+			<p>
+				<a class="btn btn-primary btn-default" href="#" role="button">View
+					details &raquo;</a>
+			</p>
+		</div>
+		<div class="col-md-offset-1 col-md-4"
+			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
+			<h2>Manage Courses</h2>
+			<p>Donec id elit non mi porta gravida at eget metus. </p>
+			<p>
+				<a class="btn btn-primary btn-default" href="#" role="button">View
+					details &raquo;</a>
+			</p>
+		</div>
+		<div class="col-md-offset-1 col-md-4"
+			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
+			<h2>Track Course Sessions</h2>
+			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.</p>
+			<p>
+				<a class="btn btn-primary btn-default" href="#" role="button">View
+					details &raquo;</a>
+			</p>
+		</div>
+
+		
+	<!-- </div>
+
+        </div> -->
     </div>
 </div>
 
