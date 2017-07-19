@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<subDataset name="Dataset1" uuid="c196ac98-8a70-42ce-bcd6-21cfb30288e4">
 		<queryString>
@@ -240,15 +240,16 @@
 		<band height="66" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="0" y="0" width="23" height="66" uuid="2b3cba0e-0519-47a3-8474-f04ee46e37c0">
+				<reportElement positionType="Float" x="1" y="0" width="29" height="66" uuid="2b3cba0e-0519-47a3-8474-f04ee46e37c0">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+					<property name="com.jaspersoft.layout.grid.x" value="1"/>
 					<property name="com.jaspersoft.layout.grid.y" value="-1"/>
 					<property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
 					<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
 					<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
-					<property name="com.jaspersoft.layout.grid.colspan" value="2"/>
+					<property name="com.jaspersoft.layout.grid.colspan" value="10"/>
 					<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -256,14 +257,14 @@
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="23" y="0" width="23" height="66" uuid="f39564c3-3d13-4387-ad16-fae1978fa690">
+				<reportElement stretchType="RelativeToTallestObject" x="30" y="0" width="21" height="66" uuid="f39564c3-3d13-4387-ad16-fae1978fa690">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.layout.grid.x" value="-1"/>
 					<property name="com.jaspersoft.layout.grid.y" value="-1"/>
 					<property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
 					<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
 					<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
-					<property name="com.jaspersoft.layout.grid.colspan" value="2"/>
+					<property name="com.jaspersoft.layout.grid.colspan" value="9"/>
 					<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
 				</reportElement>
 				<box>
@@ -272,35 +273,35 @@
 				<textFieldExpression><![CDATA[$F{fname}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="46" y="0" width="22" height="66" uuid="13f50b31-1e62-4bf0-8bc0-2f69df60ad1a"/>
+				<reportElement x="51" y="0" width="21" height="66" uuid="13f50b31-1e62-4bf0-8bc0-2f69df60ad1a"/>
 				<box>
 					<pen lineWidth="1.0"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{attendance1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="68" y="0" width="22" height="66" uuid="56959ad8-8b27-48f2-acc3-4cba8fc6c027"/>
+				<reportElement x="72" y="0" width="21" height="66" uuid="56959ad8-8b27-48f2-acc3-4cba8fc6c027"/>
 				<box>
 					<pen lineWidth="1.0"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{attendance2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="90" y="0" width="22" height="66" uuid="f78fc18d-8a23-4b8f-b512-b9c69416a821"/>
+				<reportElement x="93" y="0" width="21" height="66" uuid="f78fc18d-8a23-4b8f-b512-b9c69416a821"/>
 				<box>
 					<pen lineWidth="1.0"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{attendance3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="112" y="0" width="22" height="66" uuid="2c819a6d-8138-4ca7-aaed-319a13651df4"/>
+				<reportElement x="114" y="0" width="21" height="66" uuid="2c819a6d-8138-4ca7-aaed-319a13651df4"/>
 				<box>
 					<pen lineWidth="1.0"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{attendance4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="134" y="0" width="22" height="66" uuid="c686f866-9c04-40d8-a3e8-f8294b600bba"/>
+				<reportElement x="135" y="0" width="21" height="66" uuid="c686f866-9c04-40d8-a3e8-f8294b600bba"/>
 				<box>
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -507,7 +508,7 @@
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
 		</band>
 	</pageFooter>
 	<summary>
