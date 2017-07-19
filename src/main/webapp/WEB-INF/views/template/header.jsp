@@ -22,11 +22,9 @@
 
 </head>
 
-<<<<<<< HEAD
+
 <body style="background-image: url(/static/home_bg.jpg);  height: 60vh; background-attachment: fixed; background-size: auto 100vh;background-repeat: no-repeat;margin-bottom:40px;">
-=======
-<body style="background-image: url(/static/home.jpg); height: 60vh; background-attachment: fixed; background-size: auto 100vh;background-repeat: no-repeat;margin-bottom:40px;">
->>>>>>> 0fc8cb178de51413700de1d4fef1101819a82fbc
+
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
