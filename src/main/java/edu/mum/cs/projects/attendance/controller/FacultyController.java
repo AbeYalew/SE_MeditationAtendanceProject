@@ -34,8 +34,6 @@ public class FacultyController {
 		System.out.println(user);
 		Long facultyId = user.getFacultyId();
 
-		
-		
 		List<CourseOffering> courseOfferingList = courseService.getCourseOfferingsPastSixMonths(facultyId);
 
 		model.addAttribute("courseOfferingList", courseOfferingList);
