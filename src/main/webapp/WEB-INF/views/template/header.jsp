@@ -22,7 +22,6 @@
 
 </head>
 
-
 <body style="background-image: url(/static/home.jpg); height: 60vh; background-attachment: fixed; background-size: auto 100vh;background-repeat: no-repeat;margin-bottom:40px;">
 
 

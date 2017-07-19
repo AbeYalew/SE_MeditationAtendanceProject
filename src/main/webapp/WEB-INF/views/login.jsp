@@ -7,7 +7,7 @@
             
             <div class="account-wall"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-            	<h1 class="text-center login-title">Sign in to continue to Fire-TimeSheet</h1>
+            	<h1 class="text-center login-title" style="color: white;" >Sign in to continue to Fire-TimeSheet</h1>
             	<br/>
                 <img class="profile-img" src="/static/fire.png?sz=120"
                      alt="">
@@ -33,8 +33,8 @@
                         <input type="checkbox" value="remember-me">
                         Remember me
                     </label>
-                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                    <a href="#" class="text-center new-account">Contact system admin to get an account </a>
+                    <a href="#" class="pull-right need-help" style="color: white;">Need help? </a><span class="clearfix"></span>
+                    <a href="#" class="text-center new-account" style="color: white;">Contact system admin to get an account </a>
                 </form>
             </div>
             
