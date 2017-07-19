@@ -9,32 +9,31 @@ import edu.mum.cs.projects.attendance.domain.StudentAttendance;
 
 public class AttendanceReportPrint {
 
-	public static List<Map<String, ?>> ConvertToMap(List<StudentAttendance> stList){
-		
+	public static List<Map<String, ?>> ConvertToMap(List<StudentAttendance> stList) {
+
 		List<Map<String, ?>> attendanceList = new ArrayList<Map<String, ?>>();
-		for(StudentAttendance std:stList){
-			
-			int index=0;
-			Map<String, Object> mp= new HashMap<String, Object>();
+		for (StudentAttendance std : stList) {
+
+			int index = 0;
+			Map<String, Object> mp = new HashMap<String, Object>();
 			mp.put("id", std.getStudent().getStudentId());
 			mp.put("fname", std.getStudent().getStudentId());
 			mp.put("CourseID", std.getCourseOffering().getCourse().getNumber());
 			mp.put("OFferingID", std.getCourseOffering().getId());
 			mp.put("CourseName", std.getCourseOffering().getCourse().getName());
-			
-			for(boolean att:std.getAttendance()){
+
+			for (boolean att : std.getAttendance()) {
 				index++;
-				if(att)
-				mp.put("attendance"+index,1);
+				if (att)
+					mp.put("attendance" + index, 1);
 				else
-					mp.put("attendance"+index,0);
-				
+					mp.put("attendance" + index, 0);
+
 			}
-			
-			
+
 			attendanceList.add(mp);
 		}
-		
+
 		return attendanceList;
 	}
 

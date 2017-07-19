@@ -20,24 +20,22 @@ import edu.mum.cs.projects.attendance.service.EnrollmentService;
 public class FacultyController {
 	@Autowired
 	EnrollmentService enrollmentService;
-	
+
 	@Autowired
-	CourseOfferingRepository courseOfferingRepository ;
-	
+	CourseOfferingRepository courseOfferingRepository;
+
 	@Autowired
 	FacultyRepository facultyRepository;
 
-	@RequestMapping(value="/faculty/courseList")
-	public String facultyCourseList(Model model,Authentication authentication){
-		Users user = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	@RequestMapping(value = "/faculty/courseList")
+	public String facultyCourseList(Model model, Authentication authentication) {
+		Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println(user);
 		Long facultyId = user.getFacultyId();
-		
-		
+
 		Faculty faculty = facultyRepository.findById(facultyId);
 		List<CourseOffering> courseOfferingList = courseOfferingRepository.findByFaculty(faculty);
-		
-		
+
 		model.addAttribute("courseOfferingList", courseOfferingList);
 		return "facultyCourseList";
 	}

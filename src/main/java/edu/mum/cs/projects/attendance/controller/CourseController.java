@@ -58,6 +58,7 @@ public class CourseController {
 
 		return "attendanceListStudent";
 	}
+
 	@RequestMapping(value = "/courseOffering/getreport/{cofferingid}", method = RequestMethod.GET)
 	public String getAttendanceRecordsReport(@PathVariable("cofferingid") long cofferingid, Model model) {
 
@@ -65,9 +66,11 @@ public class CourseController {
 		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
 		coffering.setBlock(block);
 		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
-		/*model.addAttribute("studentAttendance", studentAttendance);
-		model.addAttribute("block", block);*/
-		
+		/*
+		 * model.addAttribute("studentAttendance", studentAttendance);
+		 * model.addAttribute("block", block);
+		 */
+
 		model.addAttribute("attendancereportPrint", AttendanceReportPrint.ConvertToMap(studentAttendance));
 
 		return "attendanceReportPrint";
@@ -117,7 +120,6 @@ public class CourseController {
 
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
-		
 
 		return "facultyCourseOfferingAttendance";
 	}
