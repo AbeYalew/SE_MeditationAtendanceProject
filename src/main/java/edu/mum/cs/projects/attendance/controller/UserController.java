@@ -23,6 +23,7 @@ import edu.mum.cs.projects.attendance.domain.entity.Faculty;
 import edu.mum.cs.projects.attendance.domain.entity.Role;
 import edu.mum.cs.projects.attendance.domain.entity.Student;
 import edu.mum.cs.projects.attendance.domain.entity.Users;
+import edu.mum.cs.projects.attendance.repository.RoleRepository;
 import edu.mum.cs.projects.attendance.service.FacultyService;
 import edu.mum.cs.projects.attendance.service.StudentService;
 import edu.mum.cs.projects.attendance.service.UserService;
@@ -37,6 +38,8 @@ public class UserController {
 	StudentService studentService;
 	@Autowired
 	FacultyService facultyService;
+	@Autowired
+	RoleRepository roleRepository;
 
 	@RequestMapping(value = "/user/get", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<String> findUser(Model model, @RequestParam String userName) {
@@ -95,8 +98,7 @@ public class UserController {
 
 		Users user = userService.getUserByID(id);
 
-		Role roles = user.getRoles();
-		roles.setRole(role);
+		Role roles = roleRepository.findByRole(role);		
 
 		long facultyId = facultyService.getAll().size() + 1;
 		Faculty faculty = new Faculty();
@@ -124,8 +126,8 @@ public class UserController {
 
 		Users user = userService.getUserByID(id);
 
-		Role roles = user.getRoles();
-		roles.setRole(role);
+		Role roles = roleRepository.findByRole(role);		
+		
 
 		Student student = new Student();
 		student.setFirstName(facultyService.getFacultyById(user.getFacultyId()).getFirstName());

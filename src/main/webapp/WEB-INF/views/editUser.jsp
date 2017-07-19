@@ -2,7 +2,7 @@
 <div class="container">
 	<!-- Example row of columns -->
 	<div class="panel panel-primary">
-		<div class="panel-heading">Edit ${user.roles.role} Role</div>
+		<div class="panel-heading">Existing user role is ${user.roles.role} </div>
 		<div class="panel-body">
 
 			<div class="row">
