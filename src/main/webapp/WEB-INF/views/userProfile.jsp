@@ -39,7 +39,7 @@
 					<tr>
 						<td><a href="../../user/editStudent/${user.studentId}/${user.name}">Details:</a>
 						</td>
-					</tr>
+					</tr>					
 					</c:if>
 					<c:if test="${user.roles.role == 'FACULTY'}">
 					<tr>
