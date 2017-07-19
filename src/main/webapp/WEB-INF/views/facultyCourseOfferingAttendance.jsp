@@ -51,6 +51,7 @@
 									${session.date.toString().substring(5)}</th>
 
 							</c:forEach>
+							<th>% <br> Points</th>
 						</tr>
 
 					</thead>
@@ -75,11 +76,9 @@
 										<span style="color: red" class="glyphicon glyphicon-remove"></span>
 									</c:if></td>
 							</c:forEach>
-
+							<td>${studentA.meditaionPercentage} % <br> ${studentA.meditationExtraGrade } P</td>
 						</tr>
-						<tr>
-
-						</tr>
+						
 
 					</c:forEach>
 

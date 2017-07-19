@@ -55,6 +55,7 @@
 									</div></th>
 
 							</c:forEach>
+							<th>% <br> Points</th>
 						</tr>
 
 					</thead>
@@ -107,14 +108,12 @@
 									</form>
 									</sec:authorize>
 									</td>
-
+								
 							</c:forEach>
 
-
+							<td>${studentA.meditaionPercentage} % <br> ${studentA.meditationExtraGrade } P</td>
 						</tr>
-						<tr>
-
-						</tr>
+						
 
 					</c:forEach>
 
