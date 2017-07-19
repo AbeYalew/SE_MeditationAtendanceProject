@@ -18,12 +18,12 @@
 
 <div class="col-md-offset-1 col-lg-6"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-	<fieldset class="col-md-6" >
+	<fieldset class="col-md-6" style="color: white;" >
 		<legend>
-			<span class="text-info">${user.roles.role}</span> <span
-				class="text-primary">User </span>
+			<span class="text-info" style="color: white;">${user.roles.role}</span> <span
+				class="text-primary" style="color: white;">User </span>
 		</legend>
-		<div class="panel panel-default">
+		<div class="panel panel-default" style="color: white;">
 			<div class="panel-body">
 				<table class="table table-striped table table-condensed">
 					
@@ -56,7 +56,7 @@
 		</div>
 	</fieldset>
 	<div class="clearfix"></div>	
-	<a href="/student/find"> Home</a>
+	<a style="color: white;"href="/student/find"> Home</a>
 	</div>
 </div>
 
