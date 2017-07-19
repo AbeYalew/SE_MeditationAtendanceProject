@@ -17,7 +17,7 @@ public class AttendanceReportPrint {
 			int index = 0;
 			Map<String, Object> mp = new HashMap<String, Object>();
 			mp.put("id", std.getStudent().getStudentId());
-			mp.put("fname", std.getStudent().getStudentId());
+			mp.put("fname", std.getStudent().getFirstName());
 			mp.put("CourseID", std.getCourseOffering().getCourse().getNumber());
 			mp.put("OFferingID", std.getCourseOffering().getId());
 			mp.put("CourseName", std.getCourseOffering().getCourse().getName());

@@ -6,7 +6,7 @@
     <!-- Example row of columns -->
     <div class="" >
       
-            <h3>Welcome ${username} !!!</h3>
+            <h3>Welcome ${lastName} !!!</h3>
            
             <div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4 "

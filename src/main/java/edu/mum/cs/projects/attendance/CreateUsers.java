@@ -6,7 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import edu.mum.cs.projects.attendance.service.UserService;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class CreateUsers {
 
 	public static void main(String[] args) {
