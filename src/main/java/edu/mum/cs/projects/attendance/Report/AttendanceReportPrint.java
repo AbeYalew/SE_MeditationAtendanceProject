@@ -30,7 +30,9 @@ public class AttendanceReportPrint {
 					mp.put("attendance" + index, 0);
 
 			}
-
+			
+			mp.put("percentage", std.getMeditaionPercentage());
+			mp.put("extragrade", std.getMeditationExtraGrade());
 			attendanceList.add(mp);
 		}
 

@@ -102,15 +102,3 @@ th.rotate > div {
     rotate(270deg);
   width: 15px;
 }
-.bg { 
-    /* The image used */
-    background-image: url("/static/welcome.jpg");
-
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}

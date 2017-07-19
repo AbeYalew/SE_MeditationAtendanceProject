@@ -2,12 +2,14 @@
 
 <div class="container">
     <div class="row">
+    
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             
-            <div class="account-wall">
-            	<h1 class="text-center login-title">Sign in to continue to Fire-TimeSheet</h1>
+            <div class="account-wall"
+			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
+            	<h1 class="text-center login-title" style="color: white;" >Sign in to continue to Fire-TimeSheet</h1>
             	<br/>
-                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                <img class="profile-img" src="/static/fire.png?sz=120"
                      alt="">
                 <form id="login-form" action="<c:url value="/login" />" method="post" class="form-signin">
                 	
@@ -15,7 +17,7 @@
                         <div class="error" style="color: #ff0000;">${error}</div>
                     </c:if>
 
-                    <input name= "username" type="text" class="form-control" placeholder="Email" required autofocus
+                    <input name= "username" type="text" class="form-control" placeholder="Username" required autofocus
                            value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'>
                     <br>
                     <input name="password" type="password" class="form-control" placeholder="Password" required>
@@ -31,8 +33,8 @@
                         <input type="checkbox" value="remember-me">
                         Remember me
                     </label>
-                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                    <a href="#" class="text-center new-account">Contact system admin to get an account </a>
+                    <a href="#" class="pull-right need-help" style="color: white;">Need help? </a><span class="clearfix"></span>
+                    <a href="#" class="text-center new-account" style="color: white;">Contact system admin to get an account </a>
                 </form>
             </div>
             

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.mum.cs.projects.attendance.Report.AttendanceReportPrint;
 import edu.mum.cs.projects.attendance.domain.StudentAttendance;
 import edu.mum.cs.projects.attendance.domain.entity.AcademicBlock;
 import edu.mum.cs.projects.attendance.domain.entity.BarcodeRecord;
@@ -91,6 +92,30 @@ public class StudentAttendanceController {
 
 		return "studentCourseOfferingAttendance";
 	}
+	@RequestMapping(value = "/attendance/studentPDFPrint/{studentId}/{cofferingid}", method = RequestMethod.GET)
+	public String getAttendanceRecordsStudentPDFPrint(@PathVariable("studentId") String studentId,
+			@PathVariable("cofferingid") long cofferingid, Model model, Authentication authentication) {
+
+		CourseOffering coffering = courseService.getCourseOfferingbyID(cofferingid);
+
+		AcademicBlock block = courseService.getAcademicBlock(DateUtil.convertDateToString(coffering.getStartDate()));
+		coffering.setBlock(block);
+
+		Student student = studentService.getStudentsById(studentId);
+
+		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
+
+		if (studentAttendance == null) {
+			return "redirect:/student/Courselist?attendance=none";
+		}
+
+		studentAttendance = studentAttendance.stream().filter(a -> a.getStudent().equals(student))
+				.collect(Collectors.toList());
+		model.addAttribute("attendancereportPrint", AttendanceReportPrint.ConvertToMap(studentAttendance));
+
+		return "attendanceReportPrint";
+	}
+
 
 	@RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
 	public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType,

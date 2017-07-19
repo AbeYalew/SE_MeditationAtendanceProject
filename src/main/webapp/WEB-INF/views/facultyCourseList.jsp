@@ -14,7 +14,7 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						Sorry no attendance records for the selected course s
+						Sorry no CourseList to show !!
 					</div>
 				</c:if>
 
