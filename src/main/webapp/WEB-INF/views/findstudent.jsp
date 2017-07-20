@@ -11,16 +11,19 @@
 					<button type="submit" class="btn btn-success">Search
 						Student By StudentID</button>
 				</form>
-				<!-- <form action="../user/get" method="GET">
+				<%-- <form action="../user/get" method="GET">
 					<input type="search" class="form-control" id="searchUser" name="userName" placeholder="enter username to search...">
+					<span style='color:red' id = "error">${error}</span>
 					<button type="submit" class="btn btn-success">Search
 						User By UserName</button>
-				</form> -->
-				<input type="search" class="form-control" id="username" name="userName" placeholder="enter username to search...">
+				</form>	 --%>
+				
+					<input type="search" class="form-control" id="username" name="userName" placeholder="enter username to search...">
 					<button class="btn btn-success" id="searchUser">User By UserName</button>
 					<p style='color:red' id = "error">${error}</p>
 					<div id = 'userInfo'></div>
-                    <div id = 'details'></div>
+                    <div id = 'details'></div>				
+					
 					
 				<form action="../student/list" method="GET">
 					<input type="search" class="form-control" id="id" name="entryDate" placeholder="enter entry date to search all the students in the entry ...">

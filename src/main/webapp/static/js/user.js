@@ -15,8 +15,13 @@ function getUser() {
     }).done(displayUserInfo);
 }
 
-function displayUserInfo(data) {	 
-	
+function displayUserInfo(data) {
+	if(data.active === 000000){
+		$("#error").text("Sorry " +data.name +"  is not existed in the system!!");
+		alert("Sorry " +data.name +"  is not existed in the system!!");
+	}
+	else{
+	$("#error").empty();
     var getUser = $('<fieldset>');
     
         getUser.append($('<legend>',{
@@ -137,11 +142,12 @@ function displayUserInfo(data) {
         }  
         
         
-    $("#userInfo").html(getUser) ;     
+    $("#userInfo").html(getUser) ;  
+	}
 }
 
 function displayFacultyDetails(data){
-	 alert("details");
+	 
 	var details = $('<div>');
 	details.append($('<p>',{
 		'attr' : {
@@ -217,7 +223,7 @@ function displayFacultyDetails(data){
 	
 }
 function displayStudentDetails(data){
-	alert("details");
+	
 	var details = $('<div>');
 	details.append($('<p>',{
 		'attr' : {

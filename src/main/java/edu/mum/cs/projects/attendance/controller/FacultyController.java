@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.mum.cs.projects.attendance.domain.entity.CourseOffering;
-import edu.mum.cs.projects.attendance.domain.entity.Faculty;
 import edu.mum.cs.projects.attendance.domain.entity.Users;
-import edu.mum.cs.projects.attendance.repository.CourseOfferingRepository;
 import edu.mum.cs.projects.attendance.repository.FacultyRepository;
 import edu.mum.cs.projects.attendance.service.CourseService;
 import edu.mum.cs.projects.attendance.service.EnrollmentService;
@@ -34,8 +32,6 @@ public class FacultyController {
 		System.out.println(user);
 		Long facultyId = user.getFacultyId();
 
-		
-		
 		List<CourseOffering> courseOfferingList = courseService.getCourseOfferingsPastSixMonths(facultyId);
 
 		model.addAttribute("courseOfferingList", courseOfferingList);

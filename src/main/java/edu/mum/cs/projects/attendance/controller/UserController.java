@@ -1,6 +1,9 @@
 package edu.mum.cs.projects.attendance.controller;
 
+import java.io.IOException;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -42,13 +45,20 @@ public class UserController {
 	RoleRepository roleRepository;
 
 	@RequestMapping(value = "/user/get", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<String> findUser(Model model, @RequestParam String userName) {
-
-		String user = new Gson().toJson(userService.getUserByUserName(userName));
+	public ResponseEntity<String> findUser(Model model, @RequestParam String userName, HttpServletResponse response)
+			throws IOException {
+		String user = "";
+		if (null == userService.getUserByUserName(userName)) {
+			Users mockUser = new Users();
+			mockUser.setActive(000000);
+			mockUser.setName(userName);
+			user = new Gson().toJson(mockUser);
+		} else {
+			user = new Gson().toJson(userService.getUserByUserName(userName));
+		}
 		final HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		return new ResponseEntity<String>(user, httpHeaders, HttpStatus.OK);
-
 	}
 
 	@RequestMapping(value = "/user/get/{username}", method = RequestMethod.GET)
@@ -98,7 +108,7 @@ public class UserController {
 
 		Users user = userService.getUserByID(id);
 
-		Role roles = roleRepository.findByRole(role);		
+		Role roles = roleRepository.findByRole(role);
 
 		long facultyId = facultyService.getAll().size() + 1;
 		Faculty faculty = new Faculty();
@@ -126,8 +136,7 @@ public class UserController {
 
 		Users user = userService.getUserByID(id);
 
-		Role roles = roleRepository.findByRole(role);		
-		
+		Role roles = roleRepository.findByRole(role);
 
 		Student student = new Student();
 		student.setFirstName(facultyService.getFacultyById(user.getFacultyId()).getFirstName());

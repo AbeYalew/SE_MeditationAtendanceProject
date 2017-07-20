@@ -19,8 +19,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AttendanceReport {
 
-    public static void main(String[] args) {
-        SpringApplication.run(AttendanceReport.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(AttendanceReport.class, args);
+	}
 
 }

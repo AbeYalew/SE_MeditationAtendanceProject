@@ -92,6 +92,7 @@ public class StudentAttendanceController {
 
 		return "studentCourseOfferingAttendance";
 	}
+
 	@RequestMapping(value = "/attendance/studentPDFPrint/{studentId}/{cofferingid}", method = RequestMethod.GET)
 	public String getAttendanceRecordsStudentPDFPrint(@PathVariable("studentId") String studentId,
 			@PathVariable("cofferingid") long cofferingid, Model model, Authentication authentication) {
@@ -115,7 +116,6 @@ public class StudentAttendanceController {
 
 		return "attendanceReportPrint";
 	}
-
 
 	@RequestMapping(value = "/attendance/update", method = RequestMethod.GET)
 	public String getBarcodeRecordsListByDate(@RequestParam("atendanceType") String atendanceType,

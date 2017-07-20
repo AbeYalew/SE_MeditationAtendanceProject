@@ -1,12 +1,9 @@
 package edu.mum.cs.projects.attendance.service;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -102,20 +99,17 @@ public class CourseServiceImpl implements CourseService {
 	// past six months
 	@Override
 	public List<CourseOffering> getCourseOfferingsPastSixMonths(Long facultyId) {
-		
+
 		Faculty faculty = facultyRepository.findById(facultyId);
 		List<CourseOffering> offerings = courseOfferingRepository.findByFaculty(faculty);
-		
-	
-		
+
 		Predicate<CourseOffering> byLessThanSixMonths = course -> {
-			Months months = Months.monthsBetween(new DateTime(course.getStartDate()),new DateTime());
-			System.out.println("months: "+months.getMonths());
+			Months months = Months.monthsBetween(new DateTime(course.getStartDate()), new DateTime());
+			System.out.println("months: " + months.getMonths());
 			return months.getMonths() <= 6;
 		};
 
-		return offerings.stream().filter(byLessThanSixMonths)
-				.collect(Collectors.toList());
+		return offerings.stream().filter(byLessThanSixMonths).collect(Collectors.toList());
 	}
 
 }

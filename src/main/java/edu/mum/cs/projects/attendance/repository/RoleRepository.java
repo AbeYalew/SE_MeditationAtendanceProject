@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.mum.cs.projects.attendance.domain.entity.Role;
 
 @Repository
-public interface RoleRepository extends CrudRepository<Role, Integer>{
+public interface RoleRepository extends CrudRepository<Role, Integer> {
 	Role findByRole(String role);
 }

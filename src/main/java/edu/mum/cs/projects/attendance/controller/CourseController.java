@@ -54,7 +54,6 @@ public class CourseController {
 		List<StudentAttendance> studentAttendance = attendanceService.retrieveStudentAttendanceRecords(coffering);
 		model.addAttribute("studentAttendance", studentAttendance);
 		model.addAttribute("block", block);
-		
 
 		return "attendanceListStudent";
 	}
