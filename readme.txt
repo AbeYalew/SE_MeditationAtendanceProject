@@ -1,5 +1,23 @@
 URL Page : https://cs425-fire.cfapps.io
+
 docs (folder): Documentation 
+
+credentials:
+[student]
+u: 980196
+p: Wondimu123
+
+[admin]
+u: Admin
+p: admin123
+
+[faculty]
+u: Lu27
+p: Lu123
+
+[staff]
+u: Staff
+p: staff123
 
 Local Setup process 
 
