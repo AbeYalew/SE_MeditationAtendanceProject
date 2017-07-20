@@ -1,4 +1,6 @@
-This is a Spring Boot Headless Maven project. You do not need a web server to run this.
+Setup process 
+
+This is a Spring Boot Web Maven project. You do not need a web server to run this.
 
 To run the project you need to do the following:
 
