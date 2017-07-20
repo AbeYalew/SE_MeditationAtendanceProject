@@ -3,12 +3,12 @@ This is a Spring Boot Headless Maven project. You do not need a web server to ru
 To run the project you need to do the following:
 
 1) Go to src/main/resources and edit application.properties and change the following property
-	spring.jpa.hibernate.ddl-auto = validate -> spring.jpa.hibernate.ddl-auto = create
+	spring.jpa.hibernate.ddl-auto = validate -> spring.jpa.hibernate.ddl-auto = update
 
 2) While in application.properties make sure the database parameters are correct (URL, schema, username and password)
 
 3) From the root package edu.mum.cs.projects.attendance, run the main() in a class named DatabaseLoader.java
-This will create all the necessary tables in database and load them with realistic data
+This will create all the necessary tables in database and load them with realistic data, and also load the users and passwords table, you can check the user table for username, password details
 
 4) After you successfully create database tables, you need to change the following property back to normal:
 	spring.jpa.hibernate.ddl-auto = create -> spring.jpa.hibernate.ddl-auto = validate
@@ -20,3 +20,5 @@ The Excel reports are saved under:
 src/main/resources/reports/
 
 URL Page : https://cs425-fire.cfapps.io
+
+Documentations: Documentation (folder)
