@@ -1,4 +1,7 @@
-Setup process 
+URL Page : https://cs425-fire.cfapps.io
+docs (folder): Documentation 
+
+Local Setup process 
 
 This is a Spring Boot Web Maven project. You do not need a web server to run this.
 
@@ -21,6 +24,3 @@ AttendanceReport.java
 The Excel reports are saved under:
 src/main/resources/reports/
 
-URL Page : https://cs425-fire.cfapps.io
-
-Documentations: Documentation (folder)
