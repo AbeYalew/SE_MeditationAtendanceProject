@@ -17,13 +17,13 @@
 					<button type="submit" class="btn btn-success">Search
 						User By UserName</button>
 				</form>	 --%>
-				
+				  <sec:authorize access="hasRole('ROLE_ADMIN')">
 					<input type="search" class="form-control" id="username" name="userName" placeholder="enter username to search...">
-					<button class="btn btn-success" id="searchUser">User By UserName</button>
+					<button class="btn btn-success" id="searchUser">Search User By UserName</button>
 					<p style='color:red' id = "error">${error}</p>
 					<div id = 'userInfo'></div>
                     <div id = 'details'></div>				
-					
+					</sec:authorize>
 					
 				<form action="../student/list" method="GET">
 					<input type="search" class="form-control" id="id" name="entryDate" placeholder="enter entry date to search all the students in the entry ...">
